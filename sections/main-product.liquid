@@ -1,0 +1,31 @@
+<section class="container product-page product-page--premium">
+  <div>
+    <div class="product-page__image product-page__image--premium">
+      {% if product.featured_image %}
+        {{ product.featured_image | image_url: width: 1600 | image_tag: loading:'eager', alt:product.title }}
+      {% else %}<div class="placeholder" style="aspect-ratio:1">Product image</div>{% endif %}
+    </div>
+  </div>
+  <div class="product-page__details">
+    <div class="eyebrow">{{ product.vendor | default: 'MOGACHI RUCH' }}</div>
+    <h1>{{ product.title }}</h1>
+    <div class="product-price">{{ product.selected_or_first_available_variant.price | money }}</div>
+    <div class="rte product-description">{{ product.description }}</div>
+    {% form 'product', product, class:'product-form' %}
+      {% if product.has_only_default_variant == false %}
+        <label for="variant">Choose your option</label>
+        <select id="variant" name="id">{% for variant in product.variants %}<option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected{% endif %}>{{ variant.title }} — {{ variant.price | money }}</option>{% endfor %}</select>
+      {% else %}<input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">{% endif %}
+      <div class="product-form__row">
+        <div><label for="qty">Quantity</label><input id="qty" name="quantity" type="number" min="1" value="1"></div>
+        <button class="btn btn--large product-add" type="submit" {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>{% if product.selected_or_first_available_variant.available %}Add to bag{% else %}Sold out{% endif %}</button>
+      </div>
+    {% endform %}
+    <div class="product-trust">
+      <div><strong>Secure checkout</strong><span>Powered by Shopify</span></div>
+      <div><strong>Carefully packed</strong><span>Prepared for your order</span></div>
+      <div><strong>Product details</strong><span>See label for verified information</span></div>
+    </div>
+  </div>
+</section>
+{% schema %}{"name":"Main product","settings":[]}{% endschema %}

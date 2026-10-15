@@ -1,0 +1,31 @@
+<section class="section mr-page-newsletter"><div class="container"><div class="mr-page-newsletter__box"><div><div class="eyebrow">STAY CONNECTED</div><h2>{{ section.settings.heading }}</h2><p>{{ section.settings.text }}</p></div>{% form 'customer' %}<input type="hidden" name="contact[tags]" value="newsletter"><input type="email" name="contact[email]" placeholder="Your email address" required><button class="btn" type="submit">{{ section.settings.label }}</button>{% endform %}</div></div></section>
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Bring Goa to your inbox"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Share your email for new flavours, stories and store updates."
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Button label",
+      "default": "SUBSCRIBE"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}

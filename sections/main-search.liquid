@@ -1,0 +1,6 @@
+<section class="section"><div class="container">
+  <div class="section__heading"><div class="eyebrow">SEARCH</div><h1>Find your Goan favourite</h1></div>
+  <form action="{{ routes.search_url }}" method="get" style="display:flex;gap:8px;max-width:700px;margin:0 auto 40px"><input style="flex:1;padding:14px;border:1px solid var(--border);border-radius:999px;background:var(--card)" name="q" value="{{ search.terms }}" placeholder="Search products..."><button class="btn">Search</button></form>
+  {% if search.performed %}<div class="product-grid">{% for item in search.results %}{% if item.object_type == 'product' %}<a class="card" href="{{ item.url }}"><div class="product-media">{% if item.featured_image %}{{ item.featured_image | image_url: width:900 | image_tag: loading:'lazy', alt:item.title }}{% endif %}</div><div class="card__body"><h2 class="card__title">{{ item.title }}</h2><div class="price">{{ item.price | money }}</div></div></a>{% endif %}{% endfor %}</div>{% endif %}
+</div></section>
+{% schema %}{"name":"Main search","settings":[]}{% endschema %}

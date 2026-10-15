@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "hero": {
+      "type": "page-hero",
+      "settings": {
+        "heading": "GOAN PICKLES",
+        "subheading": "Tangy, punchy accompaniments made to wake up a meal."
+      }
+    },
+    "content": {
+      "type": "page-content-block",
+      "settings": {
+        "heading": "Goan pickles",
+        "content": "<p>Pair pickles with rice, breads, snacks or home-cooked dishes for a burst of flavour.</p>"
+      }
+    },
+    "cta": {
+      "type": "page-cta",
+      "settings": {
+        "heading": "Discover the taste of Goa",
+        "text": "Explore Mogachi Ruch and find traditional flavours made for today's table.",
+        "label": "SHOP NOW",
+        "url": "/collections/all"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "content",
+    "cta"
+  ]
+}

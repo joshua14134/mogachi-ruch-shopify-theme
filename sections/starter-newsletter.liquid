@@ -1,0 +1,12 @@
+<section class="mr-starter-newsletter">
+  <span class="mr-starter-kicker">STAY CLOSE TO GOA</span>
+  <h2>New flavours, when we are ready.</h2>
+  <p>Join us as Mogachi Ruch grows from a small Goan food collection.</p>
+  {% form 'customer' %}
+    <input type="email" name="contact[email]" placeholder="Your email address" aria-label="Email address" required>
+    <button type="submit">JOIN</button>
+  {% endform %}
+</section>
+{% schema %}
+{"name":"Starter newsletter","settings":[],"presets":[{"name":"Starter newsletter"}]}
+{% endschema %}

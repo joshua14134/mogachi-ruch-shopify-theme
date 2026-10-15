@@ -1,0 +1,60 @@
+<section class="section product-showcase" data-slider>
+  <div class="container">
+    <div class="editorial-head">
+      <div><div class="eyebrow">{{ section.settings.eyebrow }}</div><h2>{{ section.settings.heading }}</h2><p>{{ section.settings.text }}</p></div>
+      {% if section.settings.link_label != blank %}<a class="underlink" href="{{ section.settings.link }}">{{ section.settings.link_label }} <span>↗</span></a>{% endif %}
+    </div>
+    {% assign collection = section.settings.collection %}
+    {% if collection != blank %}
+      <div class="product-showcase__track" data-slider-track>
+        {% for product in collection.products limit: section.settings.products_to_show %}
+          <article class="premium-product-card">
+            <a href="{{ product.url }}" class="premium-product-card__media">
+              {% if product.featured_image %}
+                {{ product.featured_image | image_url: width:1000 | image_tag: loading:'lazy', alt:product.title }}
+              {% else %}<div class="placeholder">Add product image</div>{% endif %}
+              {% if product.compare_at_price > product.price %}<span class="sale-badge">SALE</span>{% endif %}
+            </a>
+            <div class="premium-product-card__body">
+              <div class="product-meta">{{ product.vendor }}</div>
+              <a href="{{ product.url }}"><h3>{{ product.title }}</h3></a>
+              <div class="product-bottom">
+                <strong>{{ product.price | money }}</strong>
+                {% form 'product', product %}
+                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                  <button class="quick-add" type="submit" {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
+                    {% if product.selected_or_first_available_variant.available %}+ Add{% else %}Sold out{% endif %}
+                  </button>
+                {% endform %}
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+      <div class="product-showcase__controls"><button type="button" data-slider-prev aria-label="Previous products">←</button><button type="button" data-slider-next aria-label="Next products">→</button></div>
+    {% else %}
+      <div class="product-showcase__track product-showcase__fallback-grid">
+        {% assign fallback_titles = 'Goan Masalas|Goan Pickles|Goan Sweets|Traditional Snacks' | split: '|' %}
+        {% assign fallback_assets = 'goan-masalas.svg|goan-pickles.svg|goan-sweets.svg|goan-flavours.svg' | split: '|' %}
+        {% for title in fallback_titles %}
+          {% assign i = forloop.index0 %}
+          <article class="premium-product-card">
+            <a href="{{ routes.all_products_collection_url }}" class="premium-product-card__media"><img src="{{ fallback_assets[i] | asset_url }}" alt="{{ title }}" loading="lazy" width="1000" height="1000"></a>
+            <div class="premium-product-card__body"><div class="product-meta">MOGACHI RUCH</div><a href="{{ routes.all_products_collection_url }}"><h3>{{ title }}</h3></a><div class="product-bottom"><span class="product-fallback-copy">Explore the collection</span><a class="quick-add" href="{{ routes.all_products_collection_url }}">View →</a></div></div>
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% schema %}
+{"name":"Product showcase","settings":[
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"CURATED FOR YOU"},
+{"type":"text","id":"heading","label":"Heading","default":"Goan favourites"},
+{"type":"textarea","id":"text","label":"Text","default":"Start with your signature products and let the photography do the talking."},
+{"type":"text","id":"link_label","label":"Top link","default":"Shop all"},
+{"type":"url","id":"link","label":"Top link URL"},
+{"type":"collection","id":"collection","label":"Collection"},
+{"type":"range","id":"products_to_show","label":"Products to show","min":4,"max":8,"step":1,"default":4}],
+"presets":[{"name":"Product showcase"}]}
+{% endschema %}

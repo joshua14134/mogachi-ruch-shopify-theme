@@ -1,0 +1,329 @@
+<section class="mr-auth-page">
+
+  <div class="mr-auth-shell">
+
+    <div class="mr-auth-brand">
+      <span>MOGACHI</span>
+      <small>RUCH</small>
+    </div>
+
+    <div class="mr-auth-card">
+
+      <div class="mr-auth-icon">
+        ✓
+      </div>
+
+      <span class="mr-auth-eyebrow">
+        ACCOUNT
+      </span>
+
+      <h1>Activate your account</h1>
+
+      <p class="mr-auth-intro">
+        Create a password to activate your Mogachi Ruch customer account.
+      </p>
+
+      {% form 'activate_customer_password' %}
+
+        {% if form.errors %}
+          <div class="mr-auth-errors">
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
+
+        <div class="mr-field">
+          <label for="ActivatePassword">
+            Password
+          </label>
+
+          <input
+            id="ActivatePassword"
+            name="customer[password]"
+            type="password"
+            autocomplete="new-password"
+            required
+            placeholder="Enter your password"
+          >
+        </div>
+
+        <div class="mr-field">
+          <label for="ActivatePasswordConfirm">
+            Confirm password
+          </label>
+
+          <input
+            id="ActivatePasswordConfirm"
+            name="customer[password_confirmation]"
+            type="password"
+            autocomplete="new-password"
+            required
+            placeholder="Re-enter your password"
+          >
+        </div>
+
+        <button
+          class="mr-auth-primary"
+          type="submit"
+        >
+          Activate Account
+          <span>→</span>
+        </button>
+
+        <button
+          class="mr-auth-decline"
+          type="submit"
+          name="decline"
+        >
+          Decline invitation
+        </button>
+
+      {% endform %}
+
+    </div>
+
+    <div class="mr-auth-footer">
+      <a href="{{ routes.root_url }}">
+        ← Back to Mogachi Ruch
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+.mr-auth-page {
+  min-height: 78vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 20px 90px;
+  background: #f8f4ec;
+  color: #17351f;
+}
+
+.mr-auth-shell {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.mr-auth-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 28px;
+  color: #17351f;
+  line-height: .85;
+}
+
+.mr-auth-brand span {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: .16em;
+}
+
+.mr-auth-brand small {
+  margin-top: 7px;
+  color: #b47a2a;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .38em;
+}
+
+.mr-auth-card {
+  padding: 42px 42px 38px;
+  background: #fff;
+  border: 1px solid #e3ddd1;
+  box-shadow: 0 18px 50px rgba(23, 53, 31, .07);
+  text-align: center;
+}
+
+.mr-auth-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  background: #edf1e9;
+  color: #2f7d32;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.mr-auth-eyebrow {
+  display: block;
+  margin-bottom: 10px;
+  color: #8a5c4c;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .22em;
+}
+
+.mr-auth-card h1 {
+  margin: 0;
+  color: #17351f;
+  font-size: 34px;
+  line-height: 1.1;
+  letter-spacing: -.025em;
+}
+
+.mr-auth-intro {
+  max-width: 370px;
+  margin: 13px auto 30px;
+  color: #707970;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.mr-auth-card form {
+  text-align: left;
+}
+
+.mr-field {
+  margin-bottom: 18px;
+}
+
+.mr-field label {
+  display: block;
+  margin-bottom: 8px;
+  color: #17351f;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+
+.mr-field input {
+  width: 100%;
+  min-height: 50px;
+  box-sizing: border-box;
+  padding: 0 15px;
+  background: #fffdf9;
+  border: 1px solid #dcd5c9;
+  border-radius: 0;
+  color: #17351f;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.mr-field input::placeholder {
+  color: #9b9f99;
+}
+
+.mr-field input:focus {
+  border-color: #2f7d32;
+  box-shadow: 0 0 0 3px rgba(47, 125, 50, .08);
+}
+
+.mr-auth-errors {
+  margin-bottom: 20px;
+  padding: 13px 15px;
+  background: #fbefeb;
+  border: 1px solid #e3c5bc;
+  color: #8a3f31;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.mr-auth-primary {
+  width: 100%;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 8px;
+  padding: 0 20px;
+  background: #17351f;
+  border: 0;
+  border-radius: 0;
+  color: #fff;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.mr-auth-primary:hover {
+  background: #2f7d32;
+  transform: translateY(-1px);
+}
+
+.mr-auth-primary span {
+  font-size: 17px;
+}
+
+.mr-auth-decline {
+  width: 100%;
+  margin-top: 17px;
+  padding: 8px;
+  background: transparent;
+  border: 0;
+  color: #8a5c4c;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .05em;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.mr-auth-decline:hover {
+  color: #17351f;
+}
+
+.mr-auth-footer {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.mr-auth-footer a {
+  color: #687269;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.mr-auth-footer a:hover {
+  color: #2f7d32;
+}
+
+@media screen and (max-width: 600px) {
+
+  .mr-auth-page {
+    min-height: 75vh;
+    padding: 45px 15px 60px;
+  }
+
+  .mr-auth-card {
+    padding: 32px 22px 28px;
+  }
+
+  .mr-auth-card h1 {
+    font-size: 29px;
+  }
+
+  .mr-auth-intro {
+    margin-bottom: 25px;
+  }
+
+}
+
+</style>
+
+{% schema %}
+{
+  "name": "Activate account",
+  "settings": []
+}
+{% endschema %}

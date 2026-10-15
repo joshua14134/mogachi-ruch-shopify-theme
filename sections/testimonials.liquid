@@ -1,0 +1,18 @@
+<section class="section testimonials-slider" data-slider>
+  <div class="container">
+    <div class="editorial-head">
+      <div><div class="eyebrow">{{ section.settings.eyebrow }}</div><h2>{{ section.settings.heading }}</h2></div>
+      <div class="slider-controls"><button type="button" data-slider-prev aria-label="Previous review">←</button><button type="button" data-slider-next aria-label="Next review">→</button></div>
+    </div>
+    <div class="testimonial-track" data-slider-track>
+      {% for block in section.blocks %}
+        <article class="testimonial-card" {{ block.shopify_attributes }}>
+          <div class="stars">★★★★★</div><blockquote>“{{ block.settings.quote }}”</blockquote><div class="testimonial-card__person"><strong>{{ block.settings.name }}</strong>{% if block.settings.location != blank %}<span>{{ block.settings.location }}</span>{% endif %}</div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Testimonials slider","max_blocks":10,"settings":[{"type":"text","id":"eyebrow","label":"Eyebrow","default":"CUSTOMER LOVE"},{"type":"text","id":"heading","label":"Heading","default":"Good food. Happy tables."}],"blocks":[{"type":"review","name":"Review","settings":[{"type":"textarea","id":"quote","label":"Review","default":"Add a real customer review here."},{"type":"text","id":"name","label":"Name","default":"Customer name"},{"type":"text","id":"location","label":"Location","default":"Goa"}]}],"presets":[{"name":"Testimonials slider","blocks":[{"type":"review"},{"type":"review"},{"type":"review"},{"type":"review"}]}]}
+{% endschema %}

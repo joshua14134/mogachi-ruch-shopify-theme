@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "hero": {
+      "type": "page-hero",
+      "settings": {
+        "heading": "TRADITIONAL FAVOURITES",
+        "subheading": "Familiar Goan flavours worth returning to."
+      }
+    },
+    "content": {
+      "type": "page-content-block",
+      "settings": {
+        "heading": "Timeless favourites",
+        "content": "<p>Bring classic masalas, pickles, sweets and snacks back to the table.</p>"
+      }
+    },
+    "cta": {
+      "type": "page-cta",
+      "settings": {
+        "heading": "Discover the taste of Goa",
+        "text": "Explore Mogachi Ruch and find traditional flavours made for today's table.",
+        "label": "SHOP NOW",
+        "url": "/collections/all"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "content",
+    "cta"
+  ]
+}

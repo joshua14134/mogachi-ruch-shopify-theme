@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "hero": {
+      "type": "page-hero",
+      "settings": {
+        "heading": "GOAN SWEETS",
+        "subheading": "Traditional sweet favourites for celebrations and sharing."
+      }
+    },
+    "content": {
+      "type": "page-content-block",
+      "settings": {
+        "heading": "Goan sweets",
+        "content": "<p>Discover classic sweet flavours inspired by Goan food culture.</p>"
+      }
+    },
+    "cta": {
+      "type": "page-cta",
+      "settings": {
+        "heading": "Discover the taste of Goa",
+        "text": "Explore Mogachi Ruch and find traditional flavours made for today's table.",
+        "label": "SHOP NOW",
+        "url": "/collections/all"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "content",
+    "cta"
+  ]
+}

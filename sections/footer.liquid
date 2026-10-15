@@ -1,0 +1,1180 @@
+<footer class="site-footer site-footer--premium">
+  <div class="site-footer__inner">
+
+    <section class="footer-newsletter">
+      <div class="footer-newsletter__visual">
+        <span class="footer-newsletter__mini">FROM GOA</span>
+
+        <div class="footer-newsletter__logo">
+          {% if section.settings.footer_logo != blank %}
+            {{
+              section.settings.footer_logo
+              | image_url: width: 1500
+              | image_tag:
+                loading: 'lazy',
+                alt: shop.name,
+                class: 'footer-logo-img'
+            }}
+          {% else %}
+            <div class="footer-newsletter__circle">
+              <span>MR</span>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="footer-newsletter__content">
+        <span class="footer-label">
+          {{ section.settings.newsletter_eyebrow | default: 'STAY CONNECTED' }}
+        </span>
+
+        <h2>
+          {{ section.settings.newsletter_heading | default: 'Bring Goan flavours home' }}
+        </h2>
+
+        <p>
+          {{ section.settings.newsletter_text | default: 'Sign up for new products, special offers and stories from Goa.' }}
+        </p>
+      </div>
+
+      <div class="footer-newsletter__form-area">
+        {% form 'customer', class: 'footer-newsletter__form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+
+          <div class="footer-newsletter__input-wrap">
+            <div class="footer-newsletter__input-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3.5 5.5h17v13h-17z"></path>
+                <path d="m4 6 8 6 8-6"></path>
+              </svg>
+            </div>
+
+            <input
+              type="email"
+              name="contact[email]"
+              placeholder="Your email address"
+              autocomplete="email"
+              required
+            >
+
+            <button type="submit">
+              <span>Subscribe</span>
+              <strong>→</strong>
+            </button>
+          </div>
+
+          {% if form.posted_successfully? %}
+            <p class="footer-newsletter__message">
+              Thank you for subscribing!
+            </p>
+          {% endif %}
+
+          {% if form.errors %}
+            <p class="footer-newsletter__message">
+              Please enter a valid email address.
+            </p>
+          {% endif %}
+        {% endform %}
+      </div>
+    </section>
+
+    <div class="footer-line"></div>
+
+    <section class="footer-brand">
+      <div class="footer-brand__heading">
+        <span class="footer-label">MOGACHI RUCH</span>
+
+        <h2>
+          The Taste of<br>
+          <em>Traditional Goa.</em>
+        </h2>
+      </div>
+
+      <div class="footer-brand__description">
+        <span class="footer-brand__accent"></span>
+
+        <div>
+          <span class="footer-brand__small">MADE WITH TRADITION</span>
+
+          <p>
+            Masalas, pickles, sweets and snacks inspired by
+            the flavours we grew up with.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-line"></div>
+
+    <section class="footer-main">
+
+      <div class="footer-contact-card">
+        <span class="footer-index">01</span>
+
+        <span class="footer-label">GET IN TOUCH</span>
+
+        <h3>
+          Have a question<br>
+          or an enquiry?
+        </h3>
+
+        <p>
+          Questions, orders or gifting enquiries?
+          We would love to hear from you.
+        </p>
+
+        <a href="/pages/contact" class="footer-contact-button">
+          <span>Contact Mogachi Ruch</span>
+          <strong>↗</strong>
+        </a>
+      </div>
+
+      <div class="footer-column">
+        <span class="footer-index">02</span>
+
+        <h3>Company</h3>
+
+        <ul>
+          {% if section.settings.company_menu != blank %}
+
+            {% for link in section.settings.company_menu.links %}
+              <li>
+                <a href="{{ link.url }}">
+                  <span>{{ link.title }}</span>
+                  <small>↗</small>
+                </a>
+              </li>
+            {% endfor %}
+
+          {% else %}
+
+            <li>
+              <a href="/pages/about">
+                <span>About Us</span>
+                <small>↗</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/pages/food-guide">
+                <span>Food Guide</span>
+                <small>↗</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/pages/sourcing">
+                <span>Ingredients &amp; Sourcing</span>
+                <small>↗</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/pages/food-safety">
+                <span>Food Safety &amp; Quality</span>
+                <small>↗</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/pages/wholesale">
+                <span>Wholesale</span>
+                <small>↗</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/pages/corporate-gifting">
+                <span>Corporate Gifting</span>
+                <small>↗</small>
+              </a>
+            </li>
+
+          {% endif %}
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <span class="footer-index">03</span>
+
+        <h3>Support</h3>
+
+        <ul>
+          {% if section.settings.support_menu != blank %}
+
+            {% for link in section.settings.support_menu.links %}
+              <li>
+                <a href="{{ link.url }}">
+                  <span>{{ link.title }}</span>
+                  <small>↗</small>
+                </a>
+              </li>
+            {% endfor %}
+
+          {% else %}
+
+            <li>
+              <a href="/pages/faq">
+                <span>FAQs</span>
+                <small>↗</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/pages/contact">
+                <span>Contact Us</span>
+                <small>↗</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/pages/shipping-info">
+                <span>Shipping Information</span>
+                <small>↗</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/pages/returns-exchanges">
+                <span>Returns &amp; Exchanges</span>
+                <small>↗</small>
+              </a>
+            </li>
+
+          {% endif %}
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <span class="footer-index">04</span>
+
+        <h3>Shop</h3>
+
+        <ul>
+          {% if section.settings.shop_menu != blank %}
+
+            {% for link in section.settings.shop_menu.links %}
+              <li>
+                <a href="{{ link.url }}">
+                  <span>{{ link.title }}</span>
+                  <small>↗</small>
+                </a>
+              </li>
+            {% endfor %}
+
+          {% else %}
+
+            <li>
+              <a href="{{ routes.all_products_collection_url }}">
+                <span>All Products</span>
+                <small>↗</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/collections/goan-masalas">
+                <span>Goan Masalas</span>
+                <small>↗</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/collections/goan-pickles">
+                <span>Goan Pickles</span>
+                <small>↗</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/collections/goan-sweets">
+                <span>Goan Sweets</span>
+                <small>↗</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/collections/traditional-snacks">
+                <span>Traditional Snacks</span>
+                <small>↗</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/collections/gift-boxes">
+                <span>Gift Boxes</span>
+                <small>↗</small>
+              </a>
+            </li>
+
+          {% endif %}
+        </ul>
+      </div>
+
+    </section>
+
+    <div class="footer-bottom">
+
+      <div class="footer-bottom__brand">
+        <span class="footer-bottom__mark">M</span>
+
+        <span>
+          © {{ 'now' | date: '%Y' }} Mogachi Ruch
+        </span>
+      </div>
+
+      <div class="footer-location">
+        <span class="footer-location__dot"></span>
+        <span>CRAFTED IN GOA</span>
+      </div>
+
+      <div class="footer-policies">
+
+        {% if shop.privacy_policy != blank %}
+          <a href="{{ shop.privacy_policy.url }}">
+            Privacy Policy
+          </a>
+        {% endif %}
+
+        {% if shop.terms_of_service != blank %}
+          {% if shop.privacy_policy != blank %}
+            <span>·</span>
+          {% endif %}
+
+          <a href="{{ shop.terms_of_service.url }}">
+            Terms of Service
+          </a>
+        {% endif %}
+
+        {% if shop.refund_policy != blank %}
+          {% if shop.privacy_policy != blank or shop.terms_of_service != blank %}
+            <span>·</span>
+          {% endif %}
+
+          <a href="{{ shop.refund_policy.url }}">
+            Refund Policy
+          </a>
+        {% endif %}
+
+        {% if shop.shipping_policy != blank %}
+          {% if shop.privacy_policy != blank or shop.terms_of_service != blank or shop.refund_policy != blank %}
+            <span>·</span>
+          {% endif %}
+
+          <a href="{{ shop.shipping_policy.url }}">
+            Shipping Policy
+          </a>
+        {% endif %}
+
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+
+<style>
+.site-footer--premium{
+  width:100%;
+  margin:0;
+  padding:0;
+  background:#0d321d;
+  color:#fff;
+  overflow:hidden;
+}
+
+.site-footer--premium .site-footer__inner{
+  width:100%;
+  max-width:1540px;
+  margin:0 auto;
+  padding:28px 34px 18px;
+  box-sizing:border-box;
+}
+
+.site-footer--premium a{
+  text-decoration:none!important;
+}
+
+.footer-newsletter{
+  position:relative;
+  display:grid;
+  grid-template-columns:220px minmax(280px,1fr) minmax(390px,520px);
+  align-items:center;
+  gap:35px;
+  min-height:190px;
+  padding:30px 0 34px;
+}
+
+.footer-newsletter__visual{
+  position:relative;
+  height:165px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.footer-newsletter__mini{
+  position:absolute;
+  top:0;
+  left:0;
+  color:#8ea293;
+  font-size:8px;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.18em;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+}
+
+.footer-newsletter__logo{
+  width:175px;
+  height:155px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+
+.footer-logo-img{
+  display:block;
+  width:175px;
+  max-width:175px;
+  height:auto;
+  max-height:155px;
+  object-fit:contain;
+}
+
+.footer-newsletter__circle{
+  width:135px;
+  height:135px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(255,255,255,.24);
+  border-radius:50%;
+  transform:rotate(-8deg);
+  position:relative;
+  box-sizing:border-box;
+}
+
+.footer-newsletter__circle:before{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:50%;
+}
+
+.footer-newsletter__circle span{
+  color:#d4a57b;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:34px;
+  line-height:1;
+  font-weight:400;
+}
+
+.footer-label{
+  display:block;
+  margin:0 0 9px;
+  color:#c48a66;
+  font-size:9px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+
+.footer-newsletter__content h2{
+  margin:0;
+  padding:0;
+  color:#fff;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(30px,3vw,46px);
+  line-height:1;
+  font-weight:400;
+  letter-spacing:-.035em;
+}
+
+.footer-newsletter__content p{
+  max-width:500px;
+  margin:11px 0 0;
+  color:#aebfb3;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.footer-newsletter__form{
+  width:100%;
+  margin:0;
+}
+
+.footer-newsletter__input-wrap{
+  display:flex;
+  align-items:center;
+  width:100%;
+  min-height:56px;
+  padding:5px;
+  box-sizing:border-box;
+  background:#f5f0e7;
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.footer-newsletter__input-icon{
+  width:43px;
+  height:44px;
+  flex:0 0 43px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.footer-newsletter__input-icon svg{
+  width:18px;
+  height:18px;
+  fill:none;
+  stroke:#476653;
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.footer-newsletter__input-wrap input{
+  flex:1;
+  min-width:0;
+  height:44px;
+  margin:0;
+  padding:0 10px;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+  color:#17351f!important;
+  font-family:inherit;
+  font-size:13px;
+}
+
+.footer-newsletter__input-wrap input::placeholder{
+  color:#78857d;
+  opacity:1;
+}
+
+.footer-newsletter__input-wrap button{
+  min-width:128px;
+  height:44px;
+  margin:0;
+  padding:0 19px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:13px;
+  border:0;
+  background:#123c23;
+  color:#fff;
+  font-family:inherit;
+  font-size:9px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all .25s ease;
+}
+
+.footer-newsletter__input-wrap button strong{
+  font-size:16px;
+  font-weight:400;
+  transition:transform .25s ease;
+}
+
+.footer-newsletter__input-wrap button:hover{
+  background:#2b6339;
+}
+
+.footer-newsletter__input-wrap button:hover strong{
+  transform:translateX(4px);
+}
+
+.footer-newsletter__message{
+  margin:9px 0 0;
+  color:#d2ddd5;
+  font-size:11px;
+  line-height:1.4;
+}
+
+.footer-line{
+  width:100%;
+  height:1px;
+  background:rgba(255,255,255,.14);
+}
+
+.footer-brand{
+  display:grid;
+  grid-template-columns:1fr 390px;
+  align-items:end;
+  gap:60px;
+  padding:48px 0 43px;
+}
+
+.footer-brand__heading h2{
+  margin:0;
+  padding:0;
+  color:#fff;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(45px,5vw,72px);
+  line-height:.91;
+  font-weight:400;
+  letter-spacing:-.045em;
+}
+
+.footer-brand__heading h2 em{
+  color:#d5c5a4;
+  font-style:italic;
+}
+
+.footer-brand__description{
+  display:flex;
+  align-items:flex-start;
+  gap:17px;
+  padding-bottom:6px;
+}
+
+.footer-brand__accent{
+  width:32px;
+  height:1px;
+  flex:0 0 32px;
+  margin-top:7px;
+  background:#a96855;
+}
+
+.footer-brand__small{
+  display:block;
+  margin-bottom:10px;
+  color:#73877a;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.19em;
+}
+
+.footer-brand__description p{
+  max-width:310px;
+  margin:0;
+  color:#b5c5ba;
+  font-size:14px;
+  line-height:1.6;
+}
+
+.footer-main{
+  display:grid;
+  grid-template-columns:1.45fr 1fr 1fr 1fr;
+  gap:55px;
+  padding:45px 0 48px;
+}
+
+.footer-index{
+  display:block;
+  margin-bottom:15px;
+  color:#637b6b;
+  font-size:8px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.18em;
+}
+
+.footer-contact-card{
+  position:relative;
+  min-height:215px;
+  padding:25px 27px;
+  box-sizing:border-box;
+  background:#143e24;
+  border:1px solid rgba(255,255,255,.09);
+  overflow:hidden;
+}
+
+.footer-contact-card:after{
+  content:"";
+  position:absolute;
+  width:110px;
+  height:110px;
+  right:-50px;
+  bottom:-55px;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:50%;
+}
+
+.footer-contact-card h3{
+  margin:0;
+  color:#fff;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:26px;
+  line-height:1.02;
+  font-weight:400;
+  letter-spacing:-.025em;
+}
+
+.footer-contact-card p{
+  max-width:285px;
+  margin:12px 0 19px;
+  color:#9fb2a5;
+  font-size:12px;
+  line-height:1.5;
+}
+
+.footer-contact-button{
+  position:relative;
+  z-index:2;
+  display:inline-flex!important;
+  align-items:center;
+  gap:12px;
+  padding-bottom:7px;
+  color:#fff!important;
+  border-bottom:1px solid rgba(255,255,255,.38);
+  font-size:10px;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.08em;
+  transition:all .2s ease;
+}
+
+.footer-contact-button strong{
+  font-size:13px;
+  font-weight:400;
+  transition:transform .2s ease;
+}
+
+.footer-contact-button:hover{
+  color:#d5c5a4!important;
+  border-color:#d5c5a4;
+}
+
+.footer-contact-button:hover strong{
+  transform:translate(3px,-3px);
+}
+
+.footer-column{
+  min-width:0;
+}
+
+.footer-column h3{
+  margin:0 0 21px;
+  color:#fff;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:20px;
+  line-height:1;
+  font-weight:700;
+}
+
+.footer-column ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+
+.footer-column li{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+
+.footer-column li + li{
+  margin-top:10px;
+}
+
+.footer-column li a{
+  display:flex!important;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  max-width:215px;
+  color:#b6c5bb;
+  font-size:13px;
+  line-height:1.3;
+  transition:all .2s ease;
+}
+
+.footer-column li a small{
+  opacity:0;
+  color:#d5c5a4;
+  font-size:11px;
+  transform:translate(-4px,3px);
+  transition:all .2s ease;
+}
+
+.footer-column li a:hover{
+  color:#fff;
+  transform:translateX(3px);
+}
+
+.footer-column li a:hover small{
+  opacity:1;
+  transform:translate(0,0);
+}
+
+.footer-bottom{
+  min-height:57px;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:25px;
+  border-top:1px solid rgba(255,255,255,.12);
+}
+
+.footer-bottom__brand{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:#819589;
+  font-size:10px;
+  line-height:1;
+}
+
+.footer-bottom__mark{
+  width:22px;
+  height:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(255,255,255,.2);
+  color:#d5c5a4;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:11px;
+  border-radius:50%;
+}
+
+.footer-location{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:#708579;
+  font-size:8px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.17em;
+}
+
+.footer-location__dot{
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#a96855;
+}
+
+.footer-policies{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+  gap:7px;
+}
+
+.footer-policies a{
+  color:#819589;
+  font-size:10px;
+  line-height:1;
+  transition:color .2s ease;
+}
+
+.footer-policies a:hover{
+  color:#fff;
+}
+
+.footer-policies span{
+  color:#4e6958;
+  font-size:9px;
+}
+
+@media screen and (max-width:1200px){
+
+  .site-footer--premium .site-footer__inner{
+    padding-left:25px;
+    padding-right:25px;
+  }
+
+  .footer-newsletter{
+    grid-template-columns:190px minmax(260px,1fr) minmax(350px,450px);
+    gap:25px;
+  }
+
+  .footer-newsletter__visual{
+    height:145px;
+  }
+
+  .footer-newsletter__logo{
+    width:120px;
+    height:120px;
+  }
+
+  .footer-logo-img{
+    width:120px;
+    max-width:120px;
+    max-height:140px;
+  }
+
+  .footer-main{
+    gap:35px;
+  }
+
+  .footer-brand{
+    grid-template-columns:1fr 330px;
+  }
+}
+
+@media screen and (max-width:990px){
+
+  .footer-newsletter{
+    grid-template-columns:160px 1fr;
+    gap:25px;
+  }
+
+  .footer-newsletter__visual{
+    height:140px;
+  }
+
+  .footer-newsletter__logo{
+    width:140px;
+    height:130px;
+  }
+
+  .footer-logo-img{
+    width:120px;
+    max-width:120px;
+    max-height:120px;
+  }
+
+  .footer-newsletter__form-area{
+    grid-column:2;
+  }
+
+  .footer-newsletter__visual{
+    grid-row:1 / span 2;
+  }
+
+  .footer-brand{
+    grid-template-columns:1fr 300px;
+    gap:35px;
+  }
+
+  .footer-main{
+    grid-template-columns:1.3fr 1fr 1fr;
+    gap:35px 25px;
+  }
+
+  .footer-contact-card{
+    grid-column:1 / -1;
+    min-height:auto;
+  }
+
+  .footer-bottom{
+    grid-template-columns:1fr auto;
+  }
+
+  .footer-location{
+    display:none;
+  }
+}
+
+@media screen and (max-width:760px){
+
+  .site-footer--premium .site-footer__inner{
+    padding:22px 18px 15px;
+  }
+
+  .footer-newsletter{
+    grid-template-columns:1fr;
+    gap:20px;
+    padding:30px 0 28px;
+  }
+
+  .footer-newsletter__visual{
+    display:none;
+  }
+
+  .footer-newsletter__form-area{
+    grid-column:auto;
+  }
+
+  .footer-newsletter__content h2{
+    font-size:35px;
+  }
+
+  .footer-newsletter__content p{
+    font-size:13px;
+  }
+
+  .footer-brand{
+    display:block;
+    padding:38px 0;
+  }
+
+  .footer-brand__heading h2{
+    font-size:50px;
+  }
+
+  .footer-brand__description{
+    margin-top:27px;
+  }
+
+  .footer-main{
+    grid-template-columns:1fr 1fr;
+    gap:38px 25px;
+    padding:38px 0;
+  }
+
+  .footer-contact-card{
+    grid-column:1 / -1;
+  }
+
+  .footer-column li a{
+    max-width:100%;
+  }
+
+  .footer-bottom{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:15px;
+    padding:18px 0 5px;
+  }
+
+  .footer-policies{
+    justify-content:flex-start;
+  }
+}
+
+@media screen and (max-width:520px){
+
+  .site-footer--premium .site-footer__inner{
+    padding-left:15px;
+    padding-right:15px;
+  }
+
+  .footer-newsletter{
+    padding:25px 0;
+  }
+
+  .footer-newsletter__content h2{
+    font-size:31px;
+  }
+
+  .footer-newsletter__input-wrap{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:5px;
+    padding:5px;
+  }
+
+  .footer-newsletter__input-icon{
+    display:none;
+  }
+
+  .footer-newsletter__input-wrap input{
+    width:100%;
+    height:44px;
+    padding:0 12px;
+  }
+
+  .footer-newsletter__input-wrap button{
+    width:100%;
+    height:44px;
+  }
+
+  .footer-brand{
+    padding:33px 0;
+  }
+
+  .footer-brand__heading h2{
+    font-size:41px;
+  }
+
+  .footer-brand__description{
+    gap:12px;
+    margin-top:23px;
+  }
+
+  .footer-brand__description p{
+    font-size:13px;
+  }
+
+  .footer-main{
+    grid-template-columns:1fr;
+    gap:32px;
+    padding:32px 0;
+  }
+
+  .footer-contact-card{
+    padding:22px;
+  }
+
+  .footer-contact-card h3{
+    font-size:25px;
+  }
+
+  .footer-column h3{
+    margin-bottom:17px;
+  }
+
+  .footer-column li + li{
+    margin-top:9px;
+  }
+
+  .footer-column li a{
+    font-size:13px;
+  }
+
+  .footer-bottom__brand{
+    font-size:9px;
+  }
+
+  .footer-policies{
+    gap:6px;
+  }
+
+  .footer-policies a{
+    font-size:9px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Footer Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "company_menu",
+      "label": "Company menu"
+    },
+    {
+      "type": "link_list",
+      "id": "support_menu",
+      "label": "Support menu"
+    },
+    {
+      "type": "link_list",
+      "id": "shop_menu",
+      "label": "Shop menu"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_eyebrow",
+      "label": "Newsletter eyebrow",
+      "default": "STAY CONNECTED"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "Bring Goan flavours home"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_text",
+      "label": "Newsletter text",
+      "default": "Sign up for new products, special offers and stories from Goa."
+    }
+  ]
+}
+{% endschema %}

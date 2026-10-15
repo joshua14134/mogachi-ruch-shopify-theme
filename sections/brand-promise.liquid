@@ -1,0 +1,23 @@
+<section class="brand-promise">
+  <div class="brand-promise__inner">
+    {% if section.settings.image != blank %}
+      <div class="brand-promise__media">{{ section.settings.image | image_url: width:1800 | image_tag: loading:'lazy', alt:section.settings.heading }}</div>
+    {% endif %}
+    <div class="brand-promise__content">
+      <div class="eyebrow">{{ section.settings.eyebrow }}</div>
+      <h2>{{ section.settings.heading }}</h2>
+      <div class="rte">{{ section.settings.text }}</div>
+      {% if section.settings.button_label != blank %}<a class="btn" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>{% endif %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Brand promise","settings":[
+{"type":"image_picker","id":"image","label":"Image"},
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"FROM THE HEART OF GOA"},
+{"type":"text","id":"heading","label":"Heading","default":"Traditional flavours. Timeless recipes."},
+{"type":"richtext","id":"text","label":"Text","default":"<p>Mogachi Ruch celebrates the flavours, recipes and food traditions that make Goan cuisine special.</p>"},
+{"type":"text","id":"button_label","label":"Button","default":"Our Story"},
+{"type":"url","id":"button_link","label":"Button link"}],
+"presets":[{"name":"Brand promise"}]}
+{% endschema %}

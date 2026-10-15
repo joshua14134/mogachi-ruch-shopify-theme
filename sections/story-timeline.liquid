@@ -1,0 +1,35 @@
+<section class="section story-timeline">
+  <div class="container">
+    <div class="story-timeline__intro">
+      <div class="eyebrow">{{ section.settings.eyebrow }}</div>
+      <h2>{{ section.settings.heading }}</h2>
+      <div class="rte">{{ section.settings.text }}</div>
+    </div>
+    <div class="timeline">
+      {% if section.blocks.size > 0 %}{% for block in section.blocks %}
+        <div class="timeline__item" {{ block.shopify_attributes }}>
+          <div class="timeline__visual">
+            {% if block.settings.image != blank %}{{ block.settings.image | image_url: width:900 | image_tag: loading:'lazy', alt:block.settings.title }}{% else %}<div class="placeholder">{{ forloop.index }}</div>{% endif %}
+          </div>
+          <div class="timeline__copy">
+            <span>0{{ forloop.index }}</span>
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.text }}</p>
+          </div>
+        </div>
+      {% endfor %}{% else %}<div class="timeline__item"><div class="timeline__visual"><img src="{{ 'goan-story.svg' | asset_url }}" alt="Goan food tradition"></div><div class="timeline__copy"><span>01</span><h3>Inspired by Goa</h3><p>Our collection begins with the flavours and food traditions that make Goan cooking distinctive.</p></div></div><div class="timeline__item"><div class="timeline__visual"><img src="{{ 'goan-flavours.svg' | asset_url }}" alt="Goan flavours"></div><div class="timeline__copy"><span>02</span><h3>Built for Everyday Tables</h3><p>We bring familiar masalas, pickles, sweets and snacks into convenient formats for modern homes.</p></div></div><div class="timeline__item"><div class="timeline__visual"><img src="{{ 'goan-gifts.svg' | asset_url }}" alt="Mogachi Ruch gifts"></div><div class="timeline__copy"><span>03</span><h3>Made to Share</h3><p>From everyday meals to celebrations, Mogachi Ruch is about sharing good food and good memories.</p></div></div>{% endif %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Story timeline","max_blocks":5,"settings":[
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"OUR PROMISE"},
+{"type":"text","id":"heading","label":"Heading","default":"Not just a product. A taste of Goa."},
+{"type":"richtext","id":"text","label":"Intro","default":"<p>Mogachi Ruch is rooted in Goan food traditions and built around flavours made to be shared.</p>"}],
+"blocks":[{"type":"step","name":"Step","settings":[{"type":"image_picker","id":"image","label":"Image"},{"type":"text","id":"title","label":"Title","default":"Inspired by tradition"},{"type":"textarea","id":"text","label":"Text","default":"Describe the real story behind this stage."}]}],
+"presets":[{"name":"Story timeline","blocks":[
+{"type":"step","settings":{"title":"Inspired by tradition","text":"Recipes and flavours rooted in Goan food traditions."}},
+{"type":"step","settings":{"title":"Made with care","text":"We focus on traditional flavour profiles and thoughtful ingredient choices."}},
+{"type":"step","settings":{"title":"Packed for your home","text":"Products are presented for easy gifting, sharing and everyday use."}}
+]}]}
+{% endschema %}

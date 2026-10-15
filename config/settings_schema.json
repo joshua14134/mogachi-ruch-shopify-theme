@@ -1,0 +1,77 @@
+[
+  {
+    "name": "Mogachi Ruch",
+    "settings": [
+      {
+        "type": "range",
+        "id": "logo_width",
+        "label": "Logo width",
+        "min": 80,
+        "max": 260,
+        "step": 5,
+        "default": 150
+      },
+      {
+        "type": "select",
+        "id": "type_scale",
+        "label": "Typography scale",
+        "options": [
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "medium",
+            "label": "Medium"
+          },
+          {
+            "value": "large",
+            "label": "Large"
+          }
+        ],
+        "default": "medium"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background",
+        "default": "#FAF9F6"
+      },
+      {
+        "type": "color",
+        "id": "foreground_color",
+        "label": "Text",
+        "default": "#292A24"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Primary accent",
+        "default": "#283618"
+      },
+      {
+        "type": "color",
+        "id": "accent_2_color",
+        "label": "Secondary accent",
+        "default": "#606C38"
+      },
+      {
+        "type": "color",
+        "id": "border_color",
+        "label": "Borders",
+        "default": "#D6C6A8"
+      },
+      {
+        "type": "color",
+        "id": "card_color",
+        "label": "Card background",
+        "default": "#FFFFFF"
+      }
+    ]
+  }
+]

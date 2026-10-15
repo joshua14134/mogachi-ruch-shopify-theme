@@ -1,0 +1,10 @@
+<div class="promo-bar">
+  <div class="container promo-bar__inner">
+    {% for block in section.blocks %}
+      <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>{% unless forloop.last %}<span class="promo-dot">•</span>{% endunless %}
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+{"name":"Promo bar","max_blocks":5,"blocks":[{"type":"message","name":"Message","settings":[{"type":"text","id":"text","label":"Message","default":"Traditional Goan flavours"}]}],"presets":[{"name":"Promo bar","blocks":[{"type":"message","settings":{"text":"AUTHENTIC GOAN FLAVOURS"}},{"type":"message","settings":{"text":"PAN-INDIA DELIVERY"}},{"type":"message","settings":{"text":"TRADITIONAL RECIPES"}}]}]}
+{% endschema %}

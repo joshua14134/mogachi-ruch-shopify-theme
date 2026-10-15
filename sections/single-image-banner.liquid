@@ -1,0 +1,32 @@
+<section class="single-image-banner section">
+  <div class="single-image-banner__wrap">
+    <div class="single-image-banner__media">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 2200 | image_tag: loading: 'lazy', widths: '900,1200,1600,2000,2200', sizes: '100vw' }}
+      {% else %}
+        <img class="single-image-banner__placeholder" src="{{ 'goan-story.svg' | asset_url }}" alt="Mogachi Ruch story" width="2200" height="1200">
+      {% endif %}
+    </div>
+    <div class="single-image-banner__shade"></div>
+    <div class="single-image-banner__content container">
+      {% if section.settings.eyebrow != blank %}<div class="eyebrow single-image-banner__eyebrow">{{ section.settings.eyebrow }}</div>{% endif %}
+      <h2>{{ section.settings.heading }}</h2>
+      {% if section.settings.text != blank %}<p>{{ section.settings.text }}</p>{% endif %}
+      {% if section.settings.button_label != blank %}<a class="btn btn--large" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label }}</a>{% endif %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Single image banner",
+  "settings": [
+    {"type":"image_picker","id":"image","label":"Food image"},
+    {"type":"text","id":"eyebrow","label":"Small heading","default":"A taste worth remembering"},
+    {"type":"text","id":"heading","label":"Heading","default":"Bring the taste of Goa to your table."},
+    {"type":"textarea","id":"text","label":"Text","default":"Traditional flavours, beautiful ingredients and the warmth of Goan food."},
+    {"type":"text","id":"button_label","label":"Button","default":"Shop Goan Flavours"},
+    {"type":"url","id":"button_link","label":"Button link"}
+  ],
+  "presets": [{"name":"Single image banner"}]
+}
+{% endschema %}

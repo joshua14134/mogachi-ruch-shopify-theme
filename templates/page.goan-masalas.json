@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "hero": {
+      "type": "page-hero",
+      "settings": {
+        "heading": "GOAN MASALAS",
+        "subheading": "Bold blends inspired by traditional Goan cooking."
+      }
+    },
+    "content": {
+      "type": "page-content-block",
+      "settings": {
+        "heading": "Goan masalas",
+        "content": "<p>Discover spice blends for curries, seafood, vegetables, rice and everyday meals.</p>"
+      }
+    },
+    "cta": {
+      "type": "page-cta",
+      "settings": {
+        "heading": "Discover the taste of Goa",
+        "text": "Explore Mogachi Ruch and find traditional flavours made for today's table.",
+        "label": "SHOP NOW",
+        "url": "/collections/all"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "content",
+    "cta"
+  ]
+}

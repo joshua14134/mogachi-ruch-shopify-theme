@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "hero": {
+      "type": "page-hero",
+      "settings": {
+        "heading": "GOAN FOOD GUIDE",
+        "subheading": "Stories, recipes and flavour inspiration from Goa."
+      }
+    },
+    "content": {
+      "type": "page-content-block",
+      "settings": {
+        "heading": "Explore the guide",
+        "content": "<p>Discover articles about Goan masalas, pickles, sweets, snacks, spices and food traditions.</p>"
+      }
+    },
+    "cta": {
+      "type": "page-cta",
+      "settings": {
+        "heading": "Shop the flavours",
+        "text": "Turn inspiration into your next meal with Mogachi Ruch.",
+        "label": "SHOP NOW",
+        "url": "/collections/all"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "content",
+    "cta"
+  ]
+}

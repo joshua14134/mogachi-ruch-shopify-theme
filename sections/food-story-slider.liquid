@@ -1,0 +1,21 @@
+<section class="section food-story-slider" data-slider>
+  <div class="container">
+    <div class="editorial-head">
+      <div><div class="eyebrow">{{ section.settings.eyebrow }}</div><h2>{{ section.settings.heading }}</h2><p>{{ section.settings.text }}</p></div>
+      <div class="slider-controls"><button type="button" data-slider-prev aria-label="Previous">←</button><button type="button" data-slider-next aria-label="Next">→</button></div>
+    </div>
+    <div class="story-slider" data-slider-track>
+      {% for block in section.blocks %}
+        <article class="story-slide" {{ block.shopify_attributes }}>
+          <div class="story-slide__image">
+            {% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 1200 | image_tag: loading:'lazy', alt:block.settings.title }}{% else %}{% case forloop.index %}{% when 1 %}{% assign fallback = 'goan-flavours.svg' %}{% when 2 %}{% assign fallback = 'goan-masalas.svg' %}{% when 3 %}{% assign fallback = 'goan-pickles.svg' %}{% when 4 %}{% assign fallback = 'goan-sweets.svg' %}{% else %}{% assign fallback = 'goan-story.svg' %}{% endcase %}<img src="{{ fallback | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="1200" height="900">{% endif %}
+          </div>
+          <div class="story-slide__body"><span>{{ block.settings.kicker }}</span><h3>{{ block.settings.title }}</h3><p>{{ block.settings.text }}</p>{% if block.settings.link_label != blank %}<a href="{{ block.settings.link }}">{{ block.settings.link_label }} →</a>{% endif %}</div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Food story slider","max_blocks":8,"settings":[{"type":"text","id":"eyebrow","label":"Eyebrow","default":"DISCOVER GOAN FOOD"},{"type":"text","id":"heading","label":"Heading","default":"From the Goan kitchen"},{"type":"textarea","id":"text","label":"Text","default":"Use this slider for recipes, ingredients, food traditions, seasonal specials or featured collections."}],"blocks":[{"type":"story","name":"Food story","settings":[{"type":"image_picker","id":"image","label":"Image"},{"type":"text","id":"kicker","label":"Kicker","default":"GOAN CLASSIC"},{"type":"text","id":"title","label":"Title","default":"A story worth tasting"},{"type":"textarea","id":"text","label":"Text","default":"Tell customers what makes this flavour, recipe or collection special."},{"type":"text","id":"link_label","label":"Link label","default":"Explore"},{"type":"url","id":"link","label":"Link"}]}],"presets":[{"name":"Food story slider","blocks":[{"type":"story"},{"type":"story"},{"type":"story"},{"type":"story"}]}]}
+{% endschema %}

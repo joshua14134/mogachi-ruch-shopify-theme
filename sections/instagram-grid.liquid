@@ -1,0 +1,20 @@
+<section class="section social-gallery">
+  <div class="container">
+    <div class="section__heading"><div class="eyebrow">{{ section.settings.eyebrow }}</div><h2>{{ section.settings.heading }}</h2><p>{{ section.settings.text }}</p></div>
+    <div class="social-gallery__grid">
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}{{ block.settings.image | image_url: width:700 | image_tag: loading:'lazy', alt:'Mogachi Ruch' }}{% else %}<div class="placeholder">Add social image</div>{% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Social gallery","max_blocks":6,"settings":[
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"FOLLOW THE FLAVOUR"},
+{"type":"text","id":"heading","label":"Heading","default":"Mogachi Ruch on Instagram"},
+{"type":"textarea","id":"text","label":"Text","default":"Show real food, products, recipes and customers here."}],
+"blocks":[{"type":"image","name":"Image","settings":[{"type":"image_picker","id":"image","label":"Image"},{"type":"url","id":"link","label":"Link"}]}],
+"presets":[{"name":"Social gallery","blocks":[{"type":"image"},{"type":"image"},{"type":"image"},{"type":"image"},{"type":"image"},{"type":"image"}]}]}
+{% endschema %}

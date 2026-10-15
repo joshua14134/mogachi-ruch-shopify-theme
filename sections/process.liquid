@@ -1,0 +1,22 @@
+<section class="section process">
+  <div class="container">
+    <div class="section__heading"><div class="eyebrow">{{ section.settings.eyebrow }}</div><h2>{{ section.settings.heading }}</h2></div>
+    <div class="grid grid--4">
+      {% if section.blocks.size > 0 %}{% for block in section.blocks %}
+        <div class="process__item" {{ block.shopify_attributes }}>
+          <div class="process__num">{{ forloop.index }}</div>
+          <h3>{{ block.settings.title }}</h3><p>{{ block.settings.text }}</p>
+        </div>
+      {% endfor %}{% else %}<div class="process__item"><div class="process__num">1</div><h3>Traditional Recipes</h3><p>Inspired by the food traditions of Goa and the flavours made for sharing.</p></div><div class="process__item"><div class="process__num">2</div><h3>Thoughtful Ingredients</h3><p>We focus on ingredients that deliver the aroma and character expected from Goan cooking.</p></div><div class="process__item"><div class="process__num">3</div><h3>Careful Preparation</h3><p>Products are prepared and presented with attention to consistency and product information.</p></div><div class="process__item"><div class="process__num">4</div><h3>Packed With Care</h3><p>Orders are packed for the journey from our store to your table.</p></div>{% endif %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Our process","max_blocks":4,"blocks":[{"type":"step","name":"Step","settings":[{"type":"text","id":"title","label":"Title","default":"Traditional recipes"},{"type":"textarea","id":"text","label":"Text","default":"Inspired by Goan food traditions."}]}],
+"presets":[{"name":"Our process","blocks":[
+{"type":"step","settings":{"title":"Traditional Recipes","text":"Inspired by Goan food traditions."}},
+{"type":"step","settings":{"title":"Selected Ingredients","text":"We focus on ingredients that deliver the aroma and character expected from Goan cooking."}},
+{"type":"step","settings":{"title":"Careful Preparation","text":"Prepared with attention to consistency and product information."}},
+{"type":"step","settings":{"title":"Packed With Care","text":"Packed carefully for the journey to your table."}}
+]}]}
+{% endschema %}

@@ -1,0 +1,1 @@
+{"sections":{"hero":{"type":"page-hero","settings":{}},"main":{"type":"main-collection","settings":{}},"products":{"type":"page-product-grid","settings":{}},"links":{"type":"page-collection-links","settings":{}},"cta":{"type":"page-cta","settings":{}}},"order":["hero","main","products","links","cta"]}

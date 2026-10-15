@@ -1,0 +1,1397 @@
+<section class="mr-starter-products" data-mr-products>
+  <div class="mr-starter-products__wrap">
+
+    <div class="mr-products-header">
+      <div class="mr-products-heading">
+        <span class="mr-products-eyebrow">OUR FIRST COLLECTION</span>
+        <h2>Goan favourites,<br><em>made with heart.</em></h2>
+        <p>A small beginning, made around the flavours we love most.</p>
+      </div>
+
+      <div class="mr-products-controls">
+        <a href="{{ routes.all_products_collection_url }}" class="mr-products-all">
+          <span>EXPLORE ALL</span>
+          <b>↗</b>
+        </a>
+
+        <div class="mr-products-arrows">
+          <button type="button" data-mr-prev aria-label="Previous product">
+            <span>←</span>
+          </button>
+          <button type="button" data-mr-next aria-label="Next product">
+            <span>→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mr-products-track" data-mr-track>
+
+      {% assign starter_handles = 'goan-xacuti-masala,goan-recheado-masala,goan-mango-pickle,bebinca,goan-chakli,goan-starter-box' | split: ',' %}
+
+      {% for handle in starter_handles %}
+        {% assign product = all_products[handle] %}
+
+        {% if product != blank %}
+
+          {% assign first_variant = product.selected_or_first_available_variant %}
+
+          <article class="mr-product-card" data-product-card>
+
+            <div class="mr-product-media-wrap">
+
+              <a href="{{ product.url }}" class="mr-product-media" aria-label="View {{ product.title | escape }}">
+
+                <div class="mr-product-top">
+                  <span>{{ forloop.index | prepend: '0' }}</span>
+                  <span>GOA</span>
+                </div>
+
+                {% if product.featured_image %}
+                  {{
+                    product.featured_image
+                    | image_url: width: 1000
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '500,700,850,1000',
+                      sizes: '(max-width: 600px) 86vw, (max-width: 900px) 48vw, 29vw',
+                      alt: product.title
+                  }}
+                {% else %}
+                  <img
+                    src="{{ 'goan-flavours.svg' | asset_url }}"
+                    alt="{{ product.title | escape }}"
+                    loading="lazy"
+                    width="1000"
+                    height="1000"
+                  >
+                {% endif %}
+
+                <div class="mr-product-image-shade"></div>
+
+              </a>
+
+              <div class="mr-product-view">
+                <a href="{{ product.url }}">
+                  <span>VIEW PRODUCT</span>
+                  <b>↗</b>
+                </a>
+              </div>
+
+            </div>
+
+            <div class="mr-product-info">
+
+              <div class="mr-product-category">
+                {{ product.type | default: 'GOAN SPECIALTY' }}
+              </div>
+
+              <div class="mr-product-title-row">
+                <h3>
+                  <a href="{{ product.url }}">
+                    {{ product.title }}
+                  </a>
+                </h3>
+
+                <span class="mr-product-price">
+                  {{ product.price | money }}
+                </span>
+              </div>
+
+              <div class="mr-product-footer">
+
+                <span>TRADITIONAL GOAN FLAVOUR</span>
+
+                {% if product.available and first_variant != blank %}
+
+                  <button
+                    type="button"
+                    class="mr-add-to-bag"
+                    data-add-to-cart
+                    data-variant-id="{{ first_variant.id }}"
+                    data-product-title="{{ product.title | escape }}"
+                    aria-label="Add {{ product.title | escape }} to bag"
+                  >
+                    <span class="mr-add-label">ADD TO BAG</span>
+                    <span class="mr-add-icon">+</span>
+                    <span class="mr-add-loading"></span>
+                  </button>
+
+                {% else %}
+
+                  <button
+                    type="button"
+                    class="mr-add-to-bag mr-add-to-bag--sold"
+                    disabled
+                  >
+                    <span class="mr-add-label">SOLD OUT</span>
+                    <span class="mr-add-icon">×</span>
+                  </button>
+
+                {% endif %}
+
+              </div>
+
+            </div>
+
+          </article>
+
+        {% endif %}
+
+      {% endfor %}
+
+      {% if collections.all.products_count == 0 %}
+
+        {% assign fallback_titles = 'Goan Xacuti Masala,Goan Recheado Masala,Goan Mango Pickle,Bebinca,Goan Chakli,Goan Starter Box' | split: ',' %}
+
+        {% for title in fallback_titles %}
+
+          <article class="mr-product-card">
+
+            <div class="mr-product-media-wrap">
+
+              <a href="{{ routes.all_products_collection_url }}" class="mr-product-media">
+
+                <div class="mr-product-top">
+                  <span>{{ forloop.index | prepend: '0' }}</span>
+                  <span>GOA</span>
+                </div>
+
+                <img
+                  src="{{ 'goan-flavours.svg' | asset_url }}"
+                  alt="{{ title | escape }}"
+                  loading="lazy"
+                  width="1000"
+                  height="1000"
+                >
+
+                <div class="mr-product-image-shade"></div>
+
+              </a>
+
+              <div class="mr-product-view mr-product-view--static">
+                <a href="{{ routes.all_products_collection_url }}">
+                  <span>COMING SOON</span>
+                  <b>↗</b>
+                </a>
+              </div>
+
+            </div>
+
+            <div class="mr-product-info">
+
+              <div class="mr-product-category">
+                COMING SOON
+              </div>
+
+              <div class="mr-product-title-row">
+                <h3>
+                  <a href="{{ routes.all_products_collection_url }}">
+                    {{ title }}
+                  </a>
+                </h3>
+
+                <span class="mr-product-price">—</span>
+              </div>
+
+              <div class="mr-product-footer">
+                <span>COMING SOON</span>
+
+                <a
+                  href="{{ routes.all_products_collection_url }}"
+                  class="mr-add-to-bag mr-add-to-bag--link"
+                >
+                  <span class="mr-add-label">EXPLORE</span>
+                  <span class="mr-add-icon">↗</span>
+                </a>
+              </div>
+
+            </div>
+
+          </article>
+
+        {% endfor %}
+
+      {% endif %}
+
+    </div>
+
+    <div class="mr-products-bottom">
+
+      <div class="mr-products-progress">
+        <span data-mr-progress></span>
+      </div>
+
+      <div class="mr-products-count">
+        <span data-mr-current>01</span>
+        <i>/</i>
+        <span data-mr-total>06</span>
+      </div>
+
+      <div class="mr-products-scroll">
+        <span>DRAG TO EXPLORE</span>
+        <b>→</b>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="mr-cart-toast" data-mr-cart-toast>
+    <div class="mr-cart-toast__icon">✓</div>
+    <div class="mr-cart-toast__content">
+      <strong data-mr-toast-title>Added to bag</strong>
+      <span data-mr-toast-text>Product added successfully.</span>
+    </div>
+    <a href="{{ routes.cart_url }}" class="mr-cart-toast__cart">VIEW BAG</a>
+  </div>
+
+</section>
+
+<style>
+.mr-starter-products{
+  width:100%;
+  background:#f7f3ea;
+  overflow:hidden;
+  color:#17351f;
+  position:relative;
+}
+
+.mr-starter-products *{
+  box-sizing:border-box;
+}
+
+.mr-starter-products__wrap{
+  width:100%;
+  max-width:1540px;
+  margin:0 auto;
+  padding:86px 34px 72px;
+}
+
+.mr-products-header{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:40px;
+  margin-bottom:43px;
+}
+
+.mr-products-heading{
+  max-width:720px;
+}
+
+.mr-products-eyebrow{
+  display:block;
+  margin-bottom:15px;
+  color:#a96855;
+  font-size:9px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.25em;
+}
+
+.mr-products-heading h2{
+  margin:0;
+  color:#17351f;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(43px,5vw,70px);
+  line-height:.91;
+  font-weight:400;
+  letter-spacing:-.045em;
+}
+
+.mr-products-heading h2 em{
+  color:#a96855;
+  font-style:italic;
+}
+
+.mr-products-heading p{
+  max-width:500px;
+  margin:17px 0 0;
+  color:#68756c;
+  font-size:14px;
+  line-height:1.55;
+}
+
+.mr-products-controls{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  flex:0 0 auto;
+}
+
+.mr-products-all{
+  display:flex!important;
+  align-items:center;
+  gap:10px;
+  color:#17351f!important;
+  font-size:9px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.16em;
+  text-decoration:none!important;
+}
+
+.mr-products-all b{
+  color:#a96855;
+  font-size:15px;
+  font-weight:400;
+  transition:transform .25s ease;
+}
+
+.mr-products-all:hover b{
+  transform:translate(4px,-4px);
+}
+
+.mr-products-arrows{
+  display:flex;
+  gap:6px;
+}
+
+.mr-products-arrows button{
+  width:44px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #d7d2c7!important;
+  background:#f7f3ea!important;
+  color:#17351f!important;
+  cursor:pointer;
+  padding:0;
+  box-shadow:none!important;
+  outline:none!important;
+  transition:all .25s ease;
+}
+
+.mr-products-arrows button span{
+  font-size:17px;
+  line-height:1;
+}
+
+.mr-products-arrows button:hover{
+  background:#17351f!important;
+  border-color:#17351f!important;
+  color:#fff!important;
+}
+
+.mr-products-track{
+  width:100%;
+  display:flex;
+  gap:20px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding:0 0 10px;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  cursor:grab;
+}
+
+.mr-products-track::-webkit-scrollbar{
+  display:none;
+}
+
+.mr-products-track.is-dragging{
+  cursor:grabbing;
+  scroll-behavior:auto;
+  scroll-snap-type:none;
+}
+
+.mr-product-card{
+  flex:0 0 calc((100% - 60px) / 3.65);
+  min-width:0;
+  scroll-snap-align:start;
+}
+
+.mr-product-media-wrap{
+  position:relative;
+  width:100%;
+}
+
+.mr-product-media{
+  position:relative;
+  display:block;
+  width:100%;
+  aspect-ratio:1 / 1.17;
+  overflow:hidden;
+  background:#e8e1d4;
+  text-decoration:none!important;
+}
+
+.mr-product-media img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  transition:transform .8s cubic-bezier(.2,.65,.2,1);
+}
+
+.mr-product-card:hover .mr-product-media img{
+  transform:scale(1.055);
+}
+
+.mr-product-image-shade{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20,53,31,.14) 0%,
+      transparent 35%,
+      transparent 62%,
+      rgba(20,53,31,.24) 100%
+    );
+}
+
+.mr-product-top{
+  position:absolute;
+  z-index:4;
+  top:16px;
+  left:17px;
+  right:17px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  color:#fff;
+  font-size:8px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.16em;
+  text-shadow:0 2px 9px rgba(0,0,0,.3);
+}
+
+.mr-product-top span:last-child{
+  color:rgba(255,255,255,.72);
+  font-size:7px;
+  letter-spacing:.2em;
+}
+
+.mr-product-view{
+  position:absolute;
+  z-index:10;
+  left:18px;
+  right:18px;
+  bottom:18px;
+  pointer-events:none;
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity .28s ease,transform .28s ease;
+}
+
+.mr-product-view a{
+  min-height:48px;
+  width:100%;
+  display:flex!important;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 16px;
+  background:#f7f3ea!important;
+  color:#17351f!important;
+  text-decoration:none!important;
+  box-shadow:0 12px 28px rgba(20,40,25,.15);
+}
+
+.mr-product-card:hover .mr-product-view{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+
+.mr-product-view span{
+  font-size:8px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.14em;
+}
+
+.mr-product-view b{
+  color:#a96855;
+  font-size:16px;
+  font-weight:400;
+}
+
+.mr-product-view--static{
+  opacity:1;
+  transform:none;
+  pointer-events:auto;
+}
+
+.mr-product-info{
+  padding:17px 1px 0;
+}
+
+.mr-product-category{
+  margin-bottom:8px;
+  color:#a96855;
+  font-size:8px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+}
+
+.mr-product-title-row{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.mr-product-title-row h3{
+  flex:1;
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:22px;
+  line-height:1.03;
+  font-weight:400;
+  letter-spacing:-.025em;
+}
+
+.mr-product-title-row h3 a{
+  color:#17351f!important;
+  text-decoration:none!important;
+}
+
+.mr-product-price{
+  flex:0 0 auto;
+  padding-top:3px;
+  color:#17351f;
+  font-size:12px;
+  line-height:1;
+  font-weight:800;
+}
+
+.mr-product-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-top:17px;
+  padding-top:11px;
+  border-top:1px solid #d9d4c9;
+}
+
+.mr-product-footer > span{
+  color:#829087;
+  font-size:7px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.12em;
+}
+
+.mr-add-to-bag{
+  min-width:122px;
+  height:36px;
+  padding:0 10px 0 14px;
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  border:1px solid #17351f!important;
+  background:#17351f!important;
+  color:#fff!important;
+  cursor:pointer!important;
+  text-decoration:none!important;
+  outline:none!important;
+  box-shadow:none!important;
+  font-family:inherit;
+  transition:all .25s ease;
+}
+
+.mr-add-to-bag:hover{
+  background:#a96855!important;
+  border-color:#a96855!important;
+  color:#fff!important;
+  transform:translateY(-1px);
+}
+
+.mr-add-label{
+  font-size:7px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.11em;
+  white-space:nowrap;
+}
+
+.mr-add-icon{
+  width:22px;
+  height:22px;
+  flex:0 0 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:50%;
+  font-size:15px;
+  font-weight:300;
+  line-height:1;
+  transition:transform .25s ease;
+}
+
+.mr-add-to-bag:hover .mr-add-icon{
+  transform:rotate(90deg);
+}
+
+.mr-add-to-bag.is-loading{
+  opacity:.7;
+  pointer-events:none;
+}
+
+.mr-add-to-bag.is-loading .mr-add-label{
+  font-size:0;
+}
+
+.mr-add-to-bag.is-loading .mr-add-label:after{
+  content:"ADDING";
+  font-size:7px;
+}
+
+.mr-add-to-bag.is-loading .mr-add-icon{
+  display:none;
+}
+
+.mr-add-loading{
+  display:none;
+  width:13px;
+  height:13px;
+  border:1px solid rgba(255,255,255,.35);
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:mrBagSpin .7s linear infinite;
+}
+
+.mr-add-to-bag.is-loading .mr-add-loading{
+  display:block;
+}
+
+.mr-add-to-bag.is-added{
+  background:#a96855!important;
+  border-color:#a96855!important;
+}
+
+.mr-add-to-bag.is-added .mr-add-label{
+  font-size:0;
+}
+
+.mr-add-to-bag.is-added .mr-add-label:after{
+  content:"ADDED TO BAG";
+  font-size:7px;
+}
+
+.mr-add-to-bag.is-added .mr-add-icon{
+  font-size:12px;
+  transform:none;
+}
+
+.mr-add-to-bag--sold{
+  background:#ddd8ce!important;
+  border-color:#ddd8ce!important;
+  color:#6f786f!important;
+  cursor:not-allowed!important;
+}
+
+.mr-add-to-bag--sold .mr-add-icon{
+  border-color:rgba(23,53,31,.2);
+}
+
+.mr-add-to-bag--link{
+  background:transparent!important;
+  border-color:#d3cec3!important;
+  color:#17351f!important;
+}
+
+.mr-add-to-bag--link .mr-add-icon{
+  border-color:#d3cec3;
+}
+
+.mr-add-to-bag--link:hover{
+  background:#17351f!important;
+  border-color:#17351f!important;
+  color:#fff!important;
+}
+
+.mr-products-bottom{
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  align-items:center;
+  gap:25px;
+  margin-top:30px;
+}
+
+.mr-products-progress{
+  position:relative;
+  width:100%;
+  height:1px;
+  background:#d6d1c6;
+  overflow:hidden;
+}
+
+.mr-products-progress span{
+  position:absolute;
+  top:0;
+  left:0;
+  width:18%;
+  height:1px;
+  background:#17351f;
+  transition:width .15s ease;
+}
+
+.mr-products-count{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  color:#17351f;
+  font-size:9px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.12em;
+}
+
+.mr-products-count i{
+  color:#a96855;
+  font-style:normal;
+}
+
+.mr-products-scroll{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:#879188;
+  font-size:8px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.13em;
+}
+
+.mr-products-scroll b{
+  color:#a96855;
+  font-size:13px;
+  font-weight:400;
+}
+
+.mr-cart-toast{
+  position:fixed;
+  z-index:999999;
+  right:24px;
+  bottom:24px;
+  width:min(390px,calc(100vw - 30px));
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:14px;
+  background:#f7f3ea;
+  border:1px solid #d8d2c6;
+  box-shadow:0 18px 55px rgba(23,53,31,.18);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(15px);
+  transition:all .3s ease;
+}
+
+.mr-cart-toast.is-visible{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+.mr-cart-toast__icon{
+  width:36px;
+  height:36px;
+  flex:0 0 36px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#17351f;
+  color:#fff;
+  font-size:15px;
+}
+
+.mr-cart-toast__content{
+  min-width:0;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.mr-cart-toast__content strong{
+  color:#17351f;
+  font-size:9px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.mr-cart-toast__content span{
+  color:#788178;
+  font-size:10px;
+  line-height:1.3;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.mr-cart-toast__cart{
+  flex:0 0 auto;
+  color:#a96855!important;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.1em;
+  text-decoration:none!important;
+}
+
+@keyframes mrBagSpin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+@media screen and (max-width:1200px){
+
+  .mr-starter-products__wrap{
+    padding-left:25px;
+    padding-right:25px;
+  }
+
+  .mr-product-card{
+    flex-basis:calc((100% - 40px) / 3.1);
+  }
+
+  .mr-products-heading h2{
+    font-size:54px;
+  }
+
+}
+
+@media screen and (max-width:990px){
+
+  .mr-starter-products__wrap{
+    padding-top:65px;
+    padding-bottom:60px;
+  }
+
+  .mr-products-header{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:27px;
+  }
+
+  .mr-products-controls{
+    width:100%;
+    justify-content:space-between;
+  }
+
+  .mr-product-card{
+    flex-basis:calc((100% - 20px) / 2.15);
+  }
+
+  .mr-product-view{
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+  }
+
+}
+
+@media screen and (max-width:700px){
+
+  .mr-starter-products__wrap{
+    padding:54px 18px 52px;
+  }
+
+  .mr-products-header{
+    margin-bottom:30px;
+  }
+
+  .mr-products-heading h2{
+    font-size:41px;
+  }
+
+  .mr-products-heading p{
+    max-width:430px;
+    margin-top:13px;
+    font-size:13px;
+  }
+
+  .mr-products-controls{
+    gap:15px;
+  }
+
+  .mr-products-all{
+    font-size:8px;
+  }
+
+  .mr-products-arrows button{
+    width:40px;
+    height:40px;
+  }
+
+  .mr-products-track{
+    gap:14px;
+    margin-right:-18px;
+    padding-right:18px;
+  }
+
+  .mr-product-card{
+    flex-basis:82%;
+  }
+
+  .mr-product-media{
+    aspect-ratio:1 / 1.12;
+  }
+
+  .mr-product-info{
+    padding-top:14px;
+  }
+
+  .mr-product-title-row h3{
+    font-size:21px;
+  }
+
+  .mr-product-footer{
+    align-items:center;
+  }
+
+  .mr-product-footer > span{
+    max-width:130px;
+    line-height:1.3;
+  }
+
+  .mr-add-to-bag{
+    min-width:116px;
+  }
+
+  .mr-products-bottom{
+    margin-top:24px;
+  }
+
+  .mr-products-scroll{
+    display:none;
+  }
+
+  .mr-products-bottom{
+    grid-template-columns:1fr auto;
+    gap:18px;
+  }
+
+}
+
+@media screen and (max-width:480px){
+
+  .mr-starter-products__wrap{
+    padding:48px 15px 46px;
+  }
+
+  .mr-products-heading h2{
+    font-size:36px;
+  }
+
+  .mr-products-heading p{
+    font-size:12px;
+  }
+
+  .mr-products-track{
+    margin-right:-15px;
+    padding-right:15px;
+  }
+
+  .mr-product-card{
+    flex-basis:87%;
+  }
+
+  .mr-product-top{
+    top:13px;
+    left:13px;
+    right:13px;
+  }
+
+  .mr-product-view{
+    left:13px;
+    right:13px;
+    bottom:13px;
+  }
+
+  .mr-product-title-row{
+    gap:10px;
+  }
+
+  .mr-product-title-row h3{
+    font-size:20px;
+  }
+
+  .mr-product-price{
+    font-size:11px;
+  }
+
+  .mr-product-footer > span{
+    font-size:6.5px;
+  }
+
+  .mr-add-to-bag{
+    min-width:108px;
+    height:34px;
+    padding-left:11px;
+    padding-right:8px;
+  }
+
+  .mr-add-label{
+    font-size:6.5px;
+    letter-spacing:.08em;
+  }
+
+  .mr-add-to-bag.is-added .mr-add-label:after{
+    font-size:6.5px;
+  }
+
+  .mr-cart-toast{
+    right:15px;
+    bottom:15px;
+    width:calc(100vw - 30px);
+  }
+
+}
+</style>
+
+<script>
+(function(){
+
+  var section=document.querySelector('[data-mr-products]');
+
+  if(!section)return;
+
+  var track=section.querySelector('[data-mr-track]');
+  var prev=section.querySelector('[data-mr-prev]');
+  var next=section.querySelector('[data-mr-next]');
+  var progress=section.querySelector('[data-mr-progress]');
+  var current=section.querySelector('[data-mr-current]');
+  var total=section.querySelector('[data-mr-total]');
+  var toast=section.querySelector('[data-mr-cart-toast]');
+  var toastTitle=section.querySelector('[data-mr-toast-title]');
+  var toastText=section.querySelector('[data-mr-toast-text]');
+
+  if(!track)return;
+
+  var cards=track.querySelectorAll('.mr-product-card');
+
+  if(total){
+    total.textContent=cards.length<10?'0'+cards.length:cards.length;
+  }
+
+  function getStep(){
+
+    var card=track.querySelector('.mr-product-card');
+
+    if(!card)return track.clientWidth;
+
+    var gap=parseFloat(getComputedStyle(track).gap)||0;
+
+    return card.getBoundingClientRect().width+gap;
+
+  }
+
+  function update(){
+
+    var max=track.scrollWidth-track.clientWidth;
+
+    if(max<=0){
+
+      if(progress)progress.style.width='100%';
+
+      if(current)current.textContent='01';
+
+      return;
+
+    }
+
+    var ratio=track.scrollLeft/max;
+
+    if(progress){
+      progress.style.width=(18+(ratio*82))+'%';
+    }
+
+    if(current){
+
+      var index=Math.round(track.scrollLeft/getStep())+1;
+
+      index=Math.max(1,Math.min(cards.length,index));
+
+      current.textContent=index<10?'0'+index:index;
+
+    }
+
+  }
+
+  if(prev){
+
+    prev.addEventListener('click',function(){
+
+      track.scrollBy({
+        left:-getStep(),
+        behavior:'smooth'
+      });
+
+    });
+
+  }
+
+  if(next){
+
+    next.addEventListener('click',function(){
+
+      track.scrollBy({
+        left:getStep(),
+        behavior:'smooth'
+      });
+
+    });
+
+  }
+
+  track.addEventListener('scroll',update,{passive:true});
+
+  var dragging=false;
+  var startX=0;
+  var startScroll=0;
+
+  track.addEventListener('pointerdown',function(event){
+
+    if(event.pointerType==='touch')return;
+
+    if(event.target.closest('a,button'))return;
+
+    dragging=true;
+
+    startX=event.clientX;
+
+    startScroll=track.scrollLeft;
+
+    track.classList.add('is-dragging');
+
+    try{
+      track.setPointerCapture(event.pointerId);
+    }catch(e){}
+
+  });
+
+  track.addEventListener('pointermove',function(event){
+
+    if(!dragging)return;
+
+    track.scrollLeft=startScroll-(event.clientX-startX);
+
+  });
+
+  function stopDrag(){
+
+    dragging=false;
+
+    track.classList.remove('is-dragging');
+
+  }
+
+  track.addEventListener('pointerup',stopDrag);
+  track.addEventListener('pointercancel',stopDrag);
+  track.addEventListener('lostpointercapture',stopDrag);
+
+  var toastTimer;
+
+  function showToast(title,text){
+
+    if(!toast)return;
+
+    if(toastTitle)toastTitle.textContent='ADDED TO BAG';
+
+    if(toastText)toastText.textContent=text||title+' added successfully.';
+
+    toast.classList.add('is-visible');
+
+    clearTimeout(toastTimer);
+
+    toastTimer=setTimeout(function(){
+      toast.classList.remove('is-visible');
+    },4500);
+
+  }
+
+  function refreshCartCount(){
+
+    fetch('/cart.js',{
+      method:'GET',
+      headers:{
+        'Accept':'application/json'
+      }
+    })
+    .then(function(response){
+
+      if(!response.ok)throw new Error('Cart request failed');
+
+      return response.json();
+
+    })
+    .then(function(cart){
+
+      var count=cart.item_count;
+
+      document.querySelectorAll('.mr-cart__count').forEach(function(el){
+
+        if(count>0){
+          el.textContent=count;
+          el.style.display='flex';
+        }else{
+          el.style.display='none';
+        }
+
+      });
+
+      document.querySelectorAll('[data-cart-count]').forEach(function(el){
+        el.textContent=count;
+      });
+
+      document.dispatchEvent(new CustomEvent('mr:cart-updated',{
+        detail:{
+          cart:cart
+        }
+      }));
+
+    })
+    .catch(function(){});
+
+  }
+
+  function addToBag(button){
+
+    if(!button)return;
+
+    var variantId=button.getAttribute('data-variant-id');
+
+    var productTitle=button.getAttribute('data-product-title')||'Product';
+
+    if(!variantId)return;
+
+    if(button.classList.contains('is-loading'))return;
+
+    button.classList.add('is-loading');
+
+    button.disabled=true;
+
+    fetch('/cart/add.js',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      },
+      body:JSON.stringify({
+        items:[
+          {
+            id:Number(variantId),
+            quantity:1
+          }
+        ]
+      })
+    })
+    .then(function(response){
+
+      if(!response.ok){
+
+        return response.json().then(function(error){
+
+          throw new Error(
+            error.description ||
+            error.message ||
+            'Unable to add product to cart.'
+          );
+
+        });
+
+      }
+
+      return response.json();
+
+    })
+    .then(function(){
+
+      button.classList.remove('is-loading');
+
+      button.classList.add('is-added');
+
+      button.disabled=false;
+
+      var icon=button.querySelector('.mr-add-icon');
+
+      if(icon){
+        icon.textContent='✓';
+      }
+
+      showToast(
+        'ADDED TO BAG',
+        productTitle+' has been added to your bag.'
+      );
+
+      refreshCartCount();
+
+      setTimeout(function(){
+
+        button.classList.remove('is-added');
+
+        if(icon){
+          icon.textContent='+';
+        }
+
+      },3000);
+
+    })
+    .catch(function(error){
+
+      button.classList.remove('is-loading');
+
+      button.disabled=false;
+
+      showToast(
+        'UNABLE TO ADD',
+        error.message||'Please try again.'
+      );
+
+    });
+
+  }
+
+  section.querySelectorAll('[data-add-to-cart]').forEach(function(button){
+
+    button.addEventListener('click',function(event){
+
+      event.preventDefault();
+
+      event.stopPropagation();
+
+      addToBag(button);
+
+    });
+
+  });
+
+  update();
+
+  refreshCartCount();
+
+  window.addEventListener('resize',update);
+
+})();
+
+</script>
+
+{% schema %}
+{
+  "name":"Starter products",
+  "settings":[],
+  "presets":[
+    {
+      "name":"Starter products"
+    }
+  ]
+}
+{% endschema %}

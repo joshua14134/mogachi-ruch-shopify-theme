@@ -1,0 +1,61 @@
+<section class="section mr-feature-grid"><div class="container"><div class="eyebrow">MOGACHI RUCH</div><h2>{{ section.settings.heading }}</h2><div class="mr-feature-grid__items">{% for block in section.blocks %}<article class="mr-feature-grid__item" {{ block.shopify_attributes }}><div class="mr-feature-grid__number">0{{ forloop.index }}</div><h3>{{ block.settings.title }}</h3><p>{{ block.settings.text }}</p>{% if block.settings.url != blank %}<a href="{{ block.settings.url }}">{{ block.settings.label }}</a>{% endif %}</article>{% endfor %}</div></div></section>
+{% schema %}
+{
+  "name": "Feature grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Explore Mogachi Ruch"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Traditional flavour"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Discover Goan-inspired food made for cooking, gifting and sharing."
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Link label",
+          "default": "Explore"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature grid",
+      "blocks": [
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

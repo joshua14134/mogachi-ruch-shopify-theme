@@ -1,0 +1,812 @@
+<section class="mr-collection">
+  <div class="page-width">
+
+    <header class="mr-collection__header">
+      <span class="mr-collection__eyebrow">MOGACHI RUCH</span>
+
+      <h1 class="mr-collection__title">
+        {{ collection.title }}
+      </h1>
+
+      {% if collection.description != blank %}
+        <div class="mr-collection__description rte">
+          {{ collection.description }}
+        </div>
+      {% endif %}
+    </header>
+
+    {% if collection.products_count > 0 %}
+
+      <div class="mr-collection__toolbar">
+
+        <div class="mr-collection__count">
+          {{ collection.products_count }}
+          {% if collection.products_count == 1 %}
+            product
+          {% else %}
+            products
+          {% endif %}
+        </div>
+
+        <form
+          class="mr-collection__sort"
+          method="get"
+          id="mr-collection-sort"
+        >
+          <label for="mr-sort-select">
+            Sort by
+          </label>
+
+          <select
+            id="mr-sort-select"
+            name="sort_by"
+            onchange="this.form.submit()"
+          >
+            {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
+
+            {% for option in collection.sort_options %}
+              <option
+                value="{{ option.value }}"
+                {% if option.value == sort_by %}
+                  selected
+                {% endif %}
+              >
+                {{ option.name }}
+              </option>
+            {% endfor %}
+          </select>
+        </form>
+
+      </div>
+
+      <div class="mr-product-grid">
+
+        {% for product in collection.products %}
+
+          <article class="mr-product-card">
+
+            <a
+              href="{{ product.url }}"
+              class="mr-product-card__link"
+              aria-label="{{ product.title | escape }}"
+            >
+
+              <div class="mr-product-card__media">
+
+                {% if product.featured_image != blank %}
+
+                  {{
+                    product.featured_image
+                    | image_url: width: 1000
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '360, 540, 720, 900, 1000',
+                      sizes: '(max-width: 749px) 50vw, (max-width: 990px) 33vw, 25vw',
+                      alt: product.featured_image.alt | default: product.title
+                  }}
+
+                {% else %}
+
+                  <div class="mr-product-card__placeholder">
+                    <span>MOGACHI RUCH</span>
+                  </div>
+
+                {% endif %}
+
+                {% unless product.available %}
+                  <span class="mr-product-card__badge">
+                    Sold out
+                  </span>
+                {% endunless %}
+
+              </div>
+
+              <div class="mr-product-card__body">
+
+                {% if product.vendor != blank %}
+                  <span class="mr-product-card__vendor">
+                    {{ product.vendor }}
+                  </span>
+                {% endif %}
+
+                <h2 class="mr-product-card__title">
+                  {{ product.title }}
+                </h2>
+
+                <div class="mr-product-card__price">
+
+                  {% if product.compare_at_price > product.price %}
+
+                    <span class="mr-product-card__price-current">
+                      {{ product.price | money }}
+                    </span>
+
+                    <span class="mr-product-card__price-old">
+                      {{ product.compare_at_price | money }}
+                    </span>
+
+                  {% else %}
+
+                    <span class="mr-product-card__price-current">
+                      {{ product.price | money }}
+                    </span>
+
+                  {% endif %}
+
+                </div>
+
+              </div>
+
+            </a>
+
+          </article>
+
+        {% endfor %}
+
+      </div>
+
+      {% if paginate.pages > 1 %}
+
+        <nav
+          class="mr-pagination"
+          aria-label="Collection pages"
+        >
+
+          {% if paginate.previous %}
+            <a
+              href="{{ paginate.previous.url }}"
+              class="mr-pagination__arrow"
+              aria-label="Previous page"
+            >
+              ←
+            </a>
+          {% endif %}
+
+          <div class="mr-pagination__pages">
+
+            {% for part in paginate.parts %}
+
+              {% if part.is_link %}
+
+                <a
+                  href="{{ part.url }}"
+                  class="mr-pagination__page"
+                >
+                  {{ part.title }}
+                </a>
+
+              {% else %}
+
+                <span
+                  class="mr-pagination__page{% if part.title == paginate.current_page %} is-current{% endif %}"
+                >
+                  {{ part.title }}
+                </span>
+
+              {% endif %}
+
+            {% endfor %}
+
+          </div>
+
+          {% if paginate.next %}
+            <a
+              href="{{ paginate.next.url }}"
+              class="mr-pagination__arrow"
+              aria-label="Next page"
+            >
+              →
+            </a>
+          {% endif %}
+
+        </nav>
+
+      {% endif %}
+
+    {% else %}
+
+      <div class="mr-collection-empty">
+
+        <div class="mr-collection-empty__content">
+
+          <span class="mr-collection__eyebrow">
+            MOGACHI RUCH
+          </span>
+
+          <h2>
+            This collection is coming soon
+          </h2>
+
+          <p>
+            We're preparing something delicious. Explore our other Goan favourites while you wait.
+          </p>
+
+          <a
+            href="{{ routes.all_products_collection_url }}"
+            class="mr-button"
+          >
+            Shop All Products
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="mr-collection-suggestions">
+
+        <div class="mr-collection-suggestions__header">
+          <span class="mr-collection__eyebrow">
+            EXPLORE MORE
+          </span>
+
+          <h2>
+            Discover Goan Favourites
+          </h2>
+        </div>
+
+        <div class="mr-collection-suggestions__grid">
+
+          {% assign suggested_collections = 'goan-masalas,goan-pickles,goan-sweets,traditional-snacks,gift-boxes' | split: ',' %}
+
+          {% for collection_handle in suggested_collections %}
+
+            {% assign suggested_collection = collections[collection_handle] %}
+
+            {% if suggested_collection != blank and suggested_collection.handle != collection.handle %}
+
+              <a
+                href="{{ suggested_collection.url }}"
+                class="mr-suggestion-card"
+              >
+
+                <div class="mr-suggestion-card__media">
+
+                  {% if suggested_collection.featured_image != blank %}
+
+                    {{
+                      suggested_collection.featured_image
+                      | image_url: width: 800
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '320, 480, 640, 800',
+                        sizes: '(max-width: 749px) 50vw, 25vw',
+                        alt: suggested_collection.title
+                    }}
+
+                  {% else %}
+
+                    <div class="mr-suggestion-card__placeholder">
+                      <span>{{ suggested_collection.title }}</span>
+                    </div>
+
+                  {% endif %}
+
+                </div>
+
+                <div class="mr-suggestion-card__body">
+
+                  <h3>
+                    {{ suggested_collection.title }}
+                  </h3>
+
+                  <span>
+                    Explore Collection →
+                  </span>
+
+                </div>
+
+              </a>
+
+            {% endif %}
+
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+    {% endif %}
+
+  </div>
+</section>
+
+<style>
+.mr-collection {
+  background: #fffdf9;
+  padding: 70px 0 90px;
+}
+
+.mr-collection__header {
+  max-width: 850px;
+  margin: 0 auto 45px;
+  text-align: center;
+}
+
+.mr-collection__eyebrow {
+  display: block;
+  margin-bottom: 12px;
+  color: #7a554b;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.mr-collection__title {
+  margin: 0;
+  color: #17351f;
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -.02em;
+}
+
+.mr-collection__description {
+  max-width: 700px;
+  margin: 18px auto 0;
+  color: #5d625e;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.mr-collection__description p {
+  margin: 0 0 12px;
+}
+
+.mr-collection__description p:last-child {
+  margin-bottom: 0;
+}
+
+.mr-collection__toolbar {
+  min-height: 48px;
+  margin-bottom: 28px;
+  padding: 13px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #e8e2d7;
+  border-bottom: 1px solid #e8e2d7;
+}
+
+.mr-collection__count {
+  color: #6c716d;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .05em;
+}
+
+.mr-collection__sort {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mr-collection__sort label {
+  color: #6c716d;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.mr-collection__sort select {
+  min-width: 170px;
+  padding: 8px 28px 8px 10px;
+  color: #17351f;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #17351f;
+  border-radius: 0;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mr-product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 34px 22px;
+}
+
+.mr-product-card {
+  min-width: 0;
+}
+
+.mr-product-card__link {
+  display: block;
+  color: inherit;
+  text-decoration: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.mr-product-card__link::before,
+.mr-product-card__link::after {
+  display: none !important;
+  content: none !important;
+}
+
+.mr-product-card__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1.08;
+  background: #f3eee6;
+}
+
+.mr-product-card__media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform .45s ease;
+}
+
+.mr-product-card__link:hover .mr-product-card__media img {
+  transform: scale(1.035);
+}
+
+.mr-product-card__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #17351f;
+  background: #f3eee6;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.mr-product-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 7px 10px;
+  background: #17351f;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.mr-product-card__body {
+  padding: 15px 2px 0;
+}
+
+.mr-product-card__vendor {
+  display: block;
+  margin-bottom: 6px;
+  color: #7a554b;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.mr-product-card__title {
+  margin: 0 0 7px;
+  color: #17351f;
+  font-size: 16px;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.mr-product-card__price {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.mr-product-card__price-current {
+  color: #17351f;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.mr-product-card__price-old {
+  color: #929690;
+  font-size: 12px;
+  text-decoration: line-through;
+}
+
+.mr-pagination {
+  margin-top: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+.mr-pagination__pages {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.mr-pagination__page,
+.mr-pagination__arrow {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #17351f !important;
+  background: transparent;
+  border: 1px solid #e8e2d7 !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.mr-pagination__page::before,
+.mr-pagination__page::after,
+.mr-pagination__arrow::before,
+.mr-pagination__arrow::after {
+  display: none !important;
+  content: none !important;
+}
+
+.mr-pagination__page.is-current {
+  color: #fff !important;
+  background: #17351f;
+  border-color: #17351f !important;
+}
+
+.mr-pagination__page:hover,
+.mr-pagination__arrow:hover {
+  color: #fff !important;
+  background: #2f7d32;
+  border-color: #2f7d32 !important;
+}
+
+.mr-collection-empty {
+  padding: 85px 20px;
+  text-align: center;
+  background: #f4efe7;
+}
+
+.mr-collection-empty__content {
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.mr-collection-empty h2 {
+  margin: 0 0 15px;
+  color: #17351f;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.15;
+}
+
+.mr-collection-empty p {
+  max-width: 500px;
+  margin: 0 auto 28px;
+  color: #606660;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.mr-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  color: #fff !important;
+  background: #17351f;
+  border: 1px solid #17351f !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.mr-button:hover {
+  color: #fff !important;
+  background: #2f7d32;
+  border-color: #2f7d32 !important;
+}
+
+.mr-button::before,
+.mr-button::after {
+  display: none !important;
+  content: none !important;
+}
+
+.mr-collection-suggestions {
+  margin-top: 80px;
+}
+
+.mr-collection-suggestions__header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.mr-collection-suggestions__header h2 {
+  margin: 0;
+  color: #17351f;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.15;
+}
+
+.mr-collection-suggestions__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.mr-suggestion-card {
+  display: block;
+  overflow: hidden;
+  color: inherit;
+  background: #fff;
+  border: 1px solid #e8e2d7 !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+.mr-suggestion-card::before,
+.mr-suggestion-card::after {
+  display: none !important;
+  content: none !important;
+}
+
+.mr-suggestion-card__media {
+  aspect-ratio: 1 / .9;
+  overflow: hidden;
+  background: #f3eee6;
+}
+
+.mr-suggestion-card__media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform .4s ease;
+}
+
+.mr-suggestion-card:hover .mr-suggestion-card__media img {
+  transform: scale(1.04);
+}
+
+.mr-suggestion-card__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: #17351f;
+  text-align: center;
+  font-weight: 800;
+}
+
+.mr-suggestion-card__body {
+  padding: 17px;
+}
+
+.mr-suggestion-card__body h3 {
+  margin: 0 0 8px;
+  color: #17351f;
+  font-size: 16px;
+}
+
+.mr-suggestion-card__body span {
+  color: #7a554b;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+
+@media screen and (max-width: 990px) {
+  .mr-collection {
+    padding: 55px 0 70px;
+  }
+
+  .mr-product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px 16px;
+  }
+
+  .mr-collection-suggestions__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .mr-collection {
+    padding: 45px 0 60px;
+  }
+
+  .mr-collection__header {
+    margin-bottom: 30px;
+  }
+
+  .mr-collection__toolbar {
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .mr-collection__sort {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .mr-collection__sort select {
+    min-width: 145px;
+  }
+
+  .mr-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px 12px;
+  }
+
+  .mr-product-card__title {
+    font-size: 14px;
+  }
+
+  .mr-product-card__body {
+    padding-top: 12px;
+  }
+
+  .mr-collection-empty {
+    padding: 60px 18px;
+  }
+
+  .mr-collection-suggestions {
+    margin-top: 60px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .mr-collection__title {
+    font-size: 34px;
+  }
+
+  .mr-collection__description {
+    font-size: 14px;
+  }
+
+  .mr-collection__toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mr-collection__sort {
+    align-items: stretch;
+  }
+
+  .mr-collection__sort select {
+    width: 100%;
+  }
+
+  .mr-product-card__media {
+    aspect-ratio: 1 / 1.08;
+  }
+
+  .mr-pagination {
+    gap: 10px;
+  }
+
+  .mr-pagination__pages {
+    gap: 4px;
+  }
+
+  .mr-pagination__page,
+  .mr-pagination__arrow {
+    min-width: 32px;
+    height: 32px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Main collection",
+  "settings": []
+}
+{% endschema %}

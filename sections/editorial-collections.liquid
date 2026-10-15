@@ -1,0 +1,55 @@
+<section class="section editorial">
+  <div class="container">
+    <div class="editorial-head">
+      <div><div class="eyebrow">{{ section.settings.eyebrow }}</div><h2>{{ section.settings.heading }}</h2></div>
+      {% if section.settings.link_label != blank %}<a class="underlink" href="{{ section.settings.link }}">{{ section.settings.link_label }} <span>↗</span></a>{% endif %}
+    </div>
+    <div class="editorial-grid">
+      {% for block in section.blocks %}
+        <a class="editorial-card editorial-card--{{ forloop.index }}" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            {{ block.settings.image | image_url: width: 1500 | image_tag: loading:'lazy', alt:block.settings.title }}
+          {% else %}
+            {% case forloop.index %}
+              {% when 1 %}{% assign fallback = 'goan-masalas.svg' %}
+              {% when 2 %}{% assign fallback = 'goan-pickles.svg' %}
+              {% when 3 %}{% assign fallback = 'goan-sweets.svg' %}
+              {% when 4 %}{% assign fallback = 'goan-flavours.svg' %}
+              {% when 5 %}{% assign fallback = 'goan-gifts.svg' %}
+              {% else %}{% assign fallback = 'goan-story.svg' %}
+            {% endcase %}
+            <img src="{{ fallback | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="1500" height="1100">
+          {% endif %}
+          <div class="editorial-card__shade"></div>
+          <div class="editorial-card__content">
+            <span>{{ block.settings.kicker }}</span>
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.text }}</p>
+            <strong>Explore →</strong>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Editorial collections","max_blocks":6,"settings":[
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"SHOP BY MOOD"},
+{"type":"text","id":"heading","label":"Heading","default":"Explore the flavours of Goa"},
+{"type":"text","id":"link_label","label":"Top link","default":"View all products"},
+{"type":"url","id":"link","label":"Top link URL"}],
+"blocks":[{"type":"collection","name":"Collection","settings":[
+{"type":"image_picker","id":"image","label":"Image"},
+{"type":"text","id":"kicker","label":"Kicker","default":"GOAN CLASSICS"},
+{"type":"text","id":"title","label":"Title","default":"Goan Masalas"},
+{"type":"textarea","id":"text","label":"Text","default":"Aromatic blends for traditional cooking."},
+{"type":"url","id":"link","label":"Link"}]}],
+"presets":[{"name":"Editorial collections","blocks":[
+{"type":"collection","settings":{"kicker":"GOAN CLASSICS","title":"Goan Masalas","text":"Aromatic blends inspired by traditional Goan kitchens."}},
+{"type":"collection","settings":{"kicker":"BOLD & TANGY","title":"Goan Pickles","text":"Bright, punchy flavours made to lift every meal."}},
+{"type":"collection","settings":{"kicker":"SWEET TRADITIONS","title":"Goan Sweets","text":"Celebration favourites with a taste of home."}},
+{"type":"collection","settings":{"kicker":"CRISPY & SAVOURY","title":"Traditional Snacks","text":"Tea-time bites made for sharing and snacking."}},
+{"type":"collection","settings":{"kicker":"GIVE A TASTE OF GOA","title":"Gift Boxes","text":"Curated Goan flavours for birthdays, festivals and celebrations."}},
+{"type":"collection","settings":{"kicker":"FROM THE COAST","title":"Goan Favourites","text":"Discover the stories, flavours and recipes behind the food."}}
+]}]}
+{% endschema %}

@@ -1,0 +1,50 @@
+<section class="section mr-steps"><div class="container"><div class="eyebrow">HOW IT WORKS</div><h2>{{ section.settings.heading }}</h2><div class="mr-steps__grid">{% for block in section.blocks %}<article class="mr-step" {{ block.shopify_attributes }}><span>0{{ forloop.index }}</span><h3>{{ block.settings.title }}</h3><p>{{ block.settings.text }}</p></article>{% endfor %}</div></div></section>
+{% schema %}
+{
+  "name": "Steps",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A simple Mogachi Ruch experience"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Choose your favourites"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Browse traditional flavours and select what you want to share."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Steps",
+      "blocks": [
+        {
+          "type": "step"
+        },
+        {
+          "type": "step"
+        },
+        {
+          "type": "step"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

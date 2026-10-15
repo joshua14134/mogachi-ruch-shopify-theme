@@ -1,0 +1,216 @@
+<section class="mr-starter-categories">
+  <div class="mr-starter-head mr-starter-head--center">
+    <span class="mr-starter-kicker">START SMALL</span>
+    <h2>Goan flavours, simply chosen</h2>
+    <p>Four easy places to begin.</p>
+  </div>
+
+  <div class="mr-starter-category-grid">
+
+    <a href="/collections/goan-masalas" class="mr-starter-category">
+      <div class="mr-starter-category-image">
+        {% if section.settings.masala_image != blank %}
+          {{ section.settings.masala_image | image_url: width: 900 | image_tag: alt: 'Goan Masalas', loading: 'lazy' }}
+        {% else %}
+          <div class="mr-starter-placeholder">Goan Masalas</div>
+        {% endif %}
+      </div>
+      <span>Goan Masalas</span>
+    </a>
+
+    <a href="/collections/goan-pickles" class="mr-starter-category">
+      <div class="mr-starter-category-image">
+        {% if section.settings.pickle_image != blank %}
+          {{ section.settings.pickle_image | image_url: width: 900 | image_tag: alt: 'Goan Pickles', loading: 'lazy' }}
+        {% else %}
+          <div class="mr-starter-placeholder">Goan Pickles</div>
+        {% endif %}
+      </div>
+      <span>Goan Pickles</span>
+    </a>
+
+    <a href="/collections/goan-sweets" class="mr-starter-category">
+      <div class="mr-starter-category-image">
+        {% if section.settings.sweets_image != blank %}
+          {{ section.settings.sweets_image | image_url: width: 900 | image_tag: alt: 'Goan Sweets', loading: 'lazy' }}
+        {% else %}
+          <div class="mr-starter-placeholder">Goan Sweets</div>
+        {% endif %}
+      </div>
+      <span>Goan Sweets</span>
+    </a>
+
+    <a href="/collections/gift-boxes" class="mr-starter-category">
+      <div class="mr-starter-category-image">
+        {% if section.settings.gifts_image != blank %}
+          {{ section.settings.gifts_image | image_url: width: 900 | image_tag: alt: 'Goan Gifts', loading: 'lazy' }}
+        {% else %}
+          <div class="mr-starter-placeholder">Goan Gifts</div>
+        {% endif %}
+      </div>
+      <span>Goan Gifts</span>
+    </a>
+
+  </div>
+</section>
+
+<style>
+.mr-starter-categories{
+  width:100%;
+  padding:80px 0;
+  background:#f8f5ef;
+}
+
+.mr-starter-head{
+  max-width:700px;
+  margin:0 auto 38px;
+  text-align:center;
+}
+
+.mr-starter-kicker{
+  display:block;
+  margin-bottom:10px;
+  color:#6e7d62;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.2em;
+}
+
+.mr-starter-head h2{
+  margin:0;
+  color:#3b2e24;
+  font-size:clamp(30px,4vw,48px);
+  line-height:1.05;
+  font-weight:700;
+}
+
+.mr-starter-head p{
+  margin:12px 0 0;
+  color:#756b61;
+  font-size:15px;
+}
+
+.mr-starter-category-grid{
+  width:min(1200px,calc(100% - 40px));
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.mr-starter-category{
+  display:block;
+  color:#3b2e24!important;
+  text-decoration:none!important;
+}
+
+.mr-starter-category-image{
+  position:relative;
+  width:100%;
+  aspect-ratio:1/1;
+  overflow:hidden;
+  background:#e8e0d2;
+  border-radius:2px;
+}
+
+.mr-starter-category-image img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .45s ease;
+}
+
+.mr-starter-category:hover .mr-starter-category-image img{
+  transform:scale(1.04);
+}
+
+.mr-starter-category span{
+  display:block;
+  padding:16px 4px 0;
+  color:#3b2e24!important;
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.mr-starter-placeholder{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#6e7d62;
+  font-size:16px;
+  font-weight:700;
+}
+
+@media screen and (max-width:900px){
+  .mr-starter-category-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media screen and (max-width:600px){
+  .mr-starter-categories{
+    padding:55px 0;
+  }
+
+  .mr-starter-category-grid{
+    width:calc(100% - 28px);
+    gap:16px;
+  }
+
+  .mr-starter-head{
+    margin-bottom:28px;
+    padding:0 18px;
+  }
+
+  .mr-starter-head h2{
+    font-size:30px;
+  }
+
+  .mr-starter-head p{
+    font-size:14px;
+  }
+
+  .mr-starter-category span{
+    padding-top:12px;
+    font-size:11px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Starter categories",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "masala_image",
+      "label": "Goan Masalas image"
+    },
+    {
+      "type": "image_picker",
+      "id": "pickle_image",
+      "label": "Goan Pickles image"
+    },
+    {
+      "type": "image_picker",
+      "id": "sweets_image",
+      "label": "Goan Sweets image"
+    },
+    {
+      "type": "image_picker",
+      "id": "gifts_image",
+      "label": "Goan Gifts image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Starter categories"
+    }
+  ]
+}
+{% endschema %}

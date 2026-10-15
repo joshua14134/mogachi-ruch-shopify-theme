@@ -1,0 +1,7 @@
+<section class="pr-brand">
+  <div class="pr-brand__media">{% if section.settings.image != blank %}{{ section.settings.image | image_url: width:1600 | image_tag: loading:'lazy', alt:section.settings.heading }}{% else %}<img src="{{ 'goan-story.svg' | asset_url }}" alt="Mogachi Ruch from Goa" loading="lazy">{% endif %}</div>
+  <div class="pr-brand__copy"><span class="pr-kicker pr-kicker--dark">{{ section.settings.eyebrow }}</span><h2>{{ section.settings.heading }}</h2><strong>{{ section.settings.text }}</strong>{% if section.settings.button_label != blank %}<a class="pr-pill" href="{{ section.settings.button_link | default: '/pages/our-story' }}">{{ section.settings.button_label }}</a>{% endif %}</div>
+</section>
+{% schema %}
+{"name":"Home brand story","settings":[{"type":"image_picker","id":"image","label":"Image"},{"type":"text","id":"eyebrow","label":"Eyebrow","default":"WE KEEP THE"},{"type":"text","id":"heading","label":"Heading","default":"TRADITION ALIVE"},{"type":"text","id":"text","label":"Text","default":"– WE BRING THE FLAVOURS TO YOU!"},{"type":"text","id":"button_label","label":"Button label","default":"OUR STORY"},{"type":"url","id":"button_link","label":"Button link"}],"presets":[{"name":"Home brand story"}]}
+{% endschema %}

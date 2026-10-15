@@ -1,0 +1,25 @@
+<section class="mr-section mr-rich-content"><div class="page-width"><div class="mr-rich-content__inner"><h2>{{ section.settings.heading }}</h2><div class="rte">{{ section.settings.text }}</div></div></div></section>
+{% schema %}
+{
+  "name": "Rich Content",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Made with care"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Content",
+      "default": "<p>Traditional flavours, thoughtfully presented.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich Content"
+    }
+  ]
+}
+{% endschema %}

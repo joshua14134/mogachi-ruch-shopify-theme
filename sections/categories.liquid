@@ -1,0 +1,26 @@
+<section class="section">
+  <div class="container">
+    <div class="section__heading"><div class="eyebrow">{{ section.settings.eyebrow }}</div><h2>{{ section.settings.heading }}</h2></div>
+    <div class="grid grid--3">
+      {% for block in section.blocks %}
+        <a class="category-card" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 900 | image_tag: loading:'lazy', alt:block.settings.title }}{% endif %}
+          <div class="category-card__content"><h3>{{ block.settings.title }}</h3><p>{{ block.settings.text }}</p></div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Shop by category","max_blocks":6,"blocks":[
+{"type":"category","name":"Category","settings":[
+{"type":"image_picker","id":"image","label":"Image"},{"type":"text","id":"title","label":"Title","default":"Goan Masalas"},{"type":"textarea","id":"text","label":"Text","default":"Traditional spice blends for authentic Goan cooking."},{"type":"url","id":"link","label":"Link"}]}
+],"presets":[{"name":"Shop by category","blocks":[
+{"type":"category","settings":{"title":"Goan Masalas","text":"Traditional spice blends for authentic Goan cooking."}},
+{"type":"category","settings":{"title":"Goan Pickles","text":"Bold, tangy and traditional."}},
+{"type":"category","settings":{"title":"Goan Sweets","text":"Classic Goan sweets and festive favourites."}},
+{"type":"category","settings":{"title":"Traditional Snacks","text":"Traditional bites inspired by Goan kitchens."}},
+{"type":"category","settings":{"title":"Ready-to-Cook","text":"Make authentic Goan dishes at home."}},
+{"type":"category","settings":{"title":"Gift Boxes","text":"A taste of Goa, beautifully packed."}}
+]}]}
+{% endschema %}

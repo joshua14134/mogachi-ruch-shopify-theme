@@ -1,0 +1,650 @@
+<section class="mr-reset-page">
+  <div class="mr-reset-shell">
+
+    <a class="mr-reset-brand" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+      <span>MOGACHI</span>
+      <small>RUCH</small>
+    </a>
+
+    <div class="mr-reset-card">
+
+      <div class="mr-reset-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M20 11a8 8 0 1 1-2.34-5.66"></path>
+          <path d="M20 4v6h-6"></path>
+        </svg>
+      </div>
+
+      <span class="mr-reset-eyebrow">
+        ACCOUNT RECOVERY
+      </span>
+
+      <h1>Reset Your Password</h1>
+
+      <p class="mr-reset-intro">
+        Choose a new password for your Mogachi Ruch account and get back to shopping your favourite Goan flavours.
+      </p>
+
+      {% form 'reset_customer_password', novalidate: 'novalidate' %}
+
+        {% if form.errors %}
+          <div class="mr-reset-message mr-reset-message--error" role="alert">
+            <strong>We couldn't reset your password.</strong>
+            <div>{{ form.errors | default_errors }}</div>
+          </div>
+        {% endif %}
+
+        <div class="mr-reset-field">
+
+          <label for="ResetPassword">
+            New Password
+          </label>
+
+          <div class="mr-reset-password">
+
+            <input
+              id="ResetPassword"
+              name="customer[password]"
+              type="password"
+              autocomplete="new-password"
+              placeholder="Create a new password"
+              required
+            >
+
+            <button
+              type="button"
+              class="mr-reset-toggle"
+              data-reset-toggle="ResetPassword"
+              aria-label="Show password"
+              aria-pressed="false"
+            >
+              <svg class="mr-reset-eye mr-reset-eye--open" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"></path>
+                <circle cx="12" cy="12" r="2.5"></circle>
+              </svg>
+
+              <svg class="mr-reset-eye mr-reset-eye--closed" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 3l18 18"></path>
+                <path d="M10.6 6.2A10.8 10.8 0 0 1 12 6c6 0 9.5 6 9.5 6a18.7 18.7 0 0 1-3.2 3.8"></path>
+                <path d="M6.2 6.7C3.8 8.4 2.5 12 2.5 12s3.5 6 9.5 6c1.5 0 2.8-.3 4-.8"></path>
+                <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"></path>
+              </svg>
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="mr-reset-field">
+
+          <label for="ResetPasswordConfirm">
+            Confirm New Password
+          </label>
+
+          <div class="mr-reset-password">
+
+            <input
+              id="ResetPasswordConfirm"
+              name="customer[password_confirmation]"
+              type="password"
+              autocomplete="new-password"
+              placeholder="Confirm your new password"
+              required
+            >
+
+            <button
+              type="button"
+              class="mr-reset-toggle"
+              data-reset-toggle="ResetPasswordConfirm"
+              aria-label="Show password"
+              aria-pressed="false"
+            >
+              <svg class="mr-reset-eye mr-reset-eye--open" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"></path>
+                <circle cx="12" cy="12" r="2.5"></circle>
+              </svg>
+
+              <svg class="mr-reset-eye mr-reset-eye--closed" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 3l18 18"></path>
+                <path d="M10.6 6.2A10.8 10.8 0 0 1 12 6c6 0 9.5 6 9.5 6a18.7 18.7 0 0 1-3.2 3.8"></path>
+                <path d="M6.2 6.7C3.8 8.4 2.5 12 2.5 12s3.5 6 9.5 6c1.5 0 2.8-.3 4-.8"></path>
+                <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"></path>
+              </svg>
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="mr-reset-note">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M8.5 12l2.3 2.3 4.7-5"></path>
+          </svg>
+
+          <p>
+            Use a strong password that you don't use on other websites.
+          </p>
+        </div>
+
+        <div class="mr-reset-password-rules">
+          <div>
+            <span></span>
+            At least 5 characters
+          </div>
+
+          <div>
+            <span></span>
+            Use a combination of letters and numbers
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="mr-reset-button"
+        >
+          <span>Reset Password</span>
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h13"></path>
+            <path d="M13 6l6 6-6 6"></path>
+          </svg>
+        </button>
+
+      {% endform %}
+
+      <div class="mr-reset-divider"></div>
+
+      <a
+        href="{{ routes.account_login_url }}"
+        class="mr-reset-login"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M19 12H5"></path>
+          <path d="M11 18l-6-6 6-6"></path>
+        </svg>
+
+        <span>Back to Sign In</span>
+      </a>
+
+    </div>
+
+    <div class="mr-reset-footer">
+      <a href="{{ routes.root_url }}">
+        Continue Shopping
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.mr-reset-page {
+  min-height: calc(100vh - 76px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 20px 85px;
+  box-sizing: border-box;
+  background: #f8f4ec;
+  color: #17351f;
+}
+
+.mr-reset-shell {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.mr-reset-brand {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto 28px;
+  color: #17351f !important;
+  text-decoration: none !important;
+  line-height: .85;
+}
+
+.mr-reset-brand span {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: .16em;
+}
+
+.mr-reset-brand small {
+  margin-top: 7px;
+  color: #b47a2a;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .38em;
+}
+
+.mr-reset-card {
+  padding: 42px;
+  background: #fff;
+  border: 1px solid #e3ddd1;
+  box-shadow: 0 22px 60px rgba(23,53,31,.08);
+}
+
+.mr-reset-icon {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  background: #edf1e9;
+  color: #17351f;
+}
+
+.mr-reset-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mr-reset-eyebrow {
+  display: block;
+  margin-bottom: 9px;
+  color: #8a5c4c;
+  text-align: center;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .2em;
+}
+
+.mr-reset-card h1 {
+  margin: 0;
+  color: #17351f;
+  text-align: center;
+  font-size: 35px;
+  line-height: 1.1;
+  letter-spacing: -.025em;
+}
+
+.mr-reset-intro {
+  max-width: 390px;
+  margin: 13px auto 30px;
+  color: #707970;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.mr-reset-field {
+  margin-bottom: 19px;
+}
+
+.mr-reset-field label {
+  display: block;
+  margin-bottom: 8px;
+  color: #17351f;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .05em;
+}
+
+.mr-reset-password {
+  position: relative;
+}
+
+.mr-reset-password input {
+  width: 100%;
+  min-height: 51px;
+  box-sizing: border-box;
+  padding: 0 52px 0 14px;
+  background: #fffdf9;
+  border: 1px solid #dcd5c9;
+  border-radius: 0;
+  color: #17351f;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.mr-reset-password input::placeholder {
+  color: #9b9f99;
+}
+
+.mr-reset-password input:hover {
+  border-color: #bdb6a9;
+}
+
+.mr-reset-password input:focus {
+  border-color: #2f7d32;
+  box-shadow: 0 0 0 3px rgba(47,125,50,.08);
+}
+
+.mr-reset-password input:invalid:not(:placeholder-shown) {
+  border-color: #c98b7c;
+}
+
+.mr-reset-toggle {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 0;
+  color: #6e776f;
+  cursor: pointer;
+}
+
+.mr-reset-toggle svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mr-reset-eye--closed {
+  display: none;
+}
+
+.mr-reset-toggle.is-visible .mr-reset-eye--open {
+  display: none;
+}
+
+.mr-reset-toggle.is-visible .mr-reset-eye--closed {
+  display: block;
+}
+
+.mr-reset-toggle:hover {
+  color: #17351f;
+}
+
+.mr-reset-message {
+  margin-bottom: 20px;
+  padding: 13px 15px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.mr-reset-message--error {
+  background: #fbefeb;
+  border: 1px solid #e3c5bc;
+  color: #8a3f31;
+}
+
+.mr-reset-message strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.mr-reset-message ul {
+  margin: 6px 0 0;
+  padding-left: 17px;
+}
+
+.mr-reset-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 2px 0 12px;
+  padding: 12px 13px;
+  background: #f4f6f0;
+  color: #687269;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.mr-reset-note svg {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  fill: none;
+  stroke: #2f7d32;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mr-reset-note p {
+  margin: 0;
+}
+
+.mr-reset-password-rules {
+  display: grid;
+  gap: 6px;
+  margin: 0 0 20px;
+  padding: 0 2px;
+  color: #858b85;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.mr-reset-password-rules div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.mr-reset-password-rules span {
+  width: 5px;
+  height: 5px;
+  flex: 0 0 5px;
+  border-radius: 50%;
+  background: #b47a2a;
+}
+
+.mr-reset-button {
+  width: 100%;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 4px;
+  padding: 0 20px;
+  background: #17351f;
+  border: 0;
+  border-radius: 0;
+  color: #fff;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.mr-reset-button:hover {
+  background: #2f7d32;
+  transform: translateY(-1px);
+}
+
+.mr-reset-button:focus-visible {
+  outline: 2px solid #b47a2a;
+  outline-offset: 3px;
+}
+
+.mr-reset-button svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mr-reset-divider {
+  height: 1px;
+  margin: 27px 0 19px;
+  background: #e8e2d7;
+}
+
+.mr-reset-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: #8a5c4c !important;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 800;
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+.mr-reset-login:hover {
+  color: #2f7d32 !important;
+}
+
+.mr-reset-login svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mr-reset-footer {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.mr-reset-footer a {
+  color: #687269;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.mr-reset-footer a:hover {
+  color: #2f7d32;
+}
+
+@media screen and (max-width: 600px) {
+  .mr-reset-page {
+    min-height: auto;
+    padding: 45px 15px 60px;
+  }
+
+  .mr-reset-card {
+    padding: 32px 21px;
+  }
+
+  .mr-reset-card h1 {
+    font-size: 30px;
+  }
+
+  .mr-reset-intro {
+    margin-bottom: 25px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .mr-reset-card {
+    padding: 28px 17px;
+  }
+
+  .mr-reset-password-rules {
+    font-size: 8px;
+  }
+}
+</style>
+
+<script>
+(function() {
+  var toggles = document.querySelectorAll('[data-reset-toggle]');
+
+  if (!toggles.length) {
+    return;
+  }
+
+  toggles.forEach(function(toggle) {
+    toggle.addEventListener('click', function() {
+      var targetId = toggle.getAttribute('data-reset-toggle');
+      var input = document.getElementById(targetId);
+
+      if (!input) {
+        return;
+      }
+
+      var hidden = input.type === 'password';
+
+      input.type = hidden ? 'text' : 'password';
+
+      toggle.classList.toggle('is-visible', hidden);
+
+      toggle.setAttribute(
+        'aria-pressed',
+        hidden ? 'true' : 'false'
+      );
+
+      toggle.setAttribute(
+        'aria-label',
+        hidden ? 'Hide password' : 'Show password'
+      );
+    });
+  });
+
+  var form = document.querySelector('.mr-reset-card form');
+  var password = document.getElementById('ResetPassword');
+  var confirmation = document.getElementById('ResetPasswordConfirm');
+
+  if (form && password && confirmation) {
+    form.addEventListener('submit', function(event) {
+      if (password.value !== confirmation.value) {
+        event.preventDefault();
+
+        confirmation.setCustomValidity(
+          'Passwords do not match.'
+        );
+
+        confirmation.reportValidity();
+      } else {
+        confirmation.setCustomValidity('');
+      }
+    });
+
+    confirmation.addEventListener('input', function() {
+      if (password.value === confirmation.value) {
+        confirmation.setCustomValidity('');
+      } else {
+        confirmation.setCustomValidity(
+          'Passwords do not match.'
+        );
+      }
+    });
+
+    password.addEventListener('input', function() {
+      if (password.value === confirmation.value) {
+        confirmation.setCustomValidity('');
+      } else if (confirmation.value !== '') {
+        confirmation.setCustomValidity(
+          'Passwords do not match.'
+        );
+      }
+    });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Reset password",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,24 @@
+<section class="section">
+  <div class="container">
+    <div class="split">
+      <div class="split__media">
+        {% if section.settings.image != blank %}{{ section.settings.image | image_url: width: 1400 | image_tag: loading:'lazy', alt:section.settings.heading }}{% else %}<div class="placeholder" style="height:100%">Add brand image</div>{% endif %}
+      </div>
+      <div class="split__content">
+        {% if section.settings.eyebrow != blank %}<div class="eyebrow">{{ section.settings.eyebrow }}</div>{% endif %}
+        <h2>{{ section.settings.heading }}</h2>
+        <div class="rte">{{ section.settings.text }}</div>
+        {% if section.settings.button_label != blank %}<p><a class="btn" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a></p>{% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Image with text","settings":[
+{"type":"image_picker","id":"image","label":"Image"},
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"FROM THE HEART OF GOA"},
+{"type":"text","id":"heading","label":"Heading","default":"Traditional flavours. Timeless recipes."},
+{"type":"richtext","id":"text","label":"Text","default":"<p>Mogachi Ruch brings the flavours of traditional Goa to homes near and far. Mogachi Ruch brings the flavours of traditional Goa to homes near and far, with food made for sharing.</p>"},
+{"type":"text","id":"button_label","label":"Button","default":"Our Story"},{"type":"url","id":"button_link","label":"Link"}
+],"presets":[{"name":"Image with text"}]}
+{% endschema %}

@@ -1,0 +1,31 @@
+{
+  "sections": {
+    "hero": {
+      "type": "page-hero",
+      "settings": {
+        "heading": "REFUND POLICY",
+        "subheading": "Refund information for Mogachi Ruch orders."
+      }
+    },
+    "policy": {
+      "type": "page-policy-block",
+      "settings": {
+        "heading": "Refund policy"
+      }
+    },
+    "cta": {
+      "type": "page-cta",
+      "settings": {
+        "heading": "Discover the taste of Goa",
+        "text": "Explore Mogachi Ruch and find traditional flavours made for today\u2019s table.",
+        "label": "SHOP NOW",
+        "url": "/collections/all"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "policy",
+    "cta"
+  ]
+}

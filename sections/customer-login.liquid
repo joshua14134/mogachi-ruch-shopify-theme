@@ -1,0 +1,983 @@
+<section class="mr-auth-page">
+  <div class="mr-auth-shell">
+
+    <a class="mr-auth-brand" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+      <span>MOGACHI</span>
+      <small>RUCH</small>
+    </a>
+
+    <div class="mr-auth-card">
+
+      <div class="mr-auth-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="8" r="3.5"></circle>
+          <path d="M5.5 20c.8-3.6 3-5.4 6.5-5.4s5.7 1.8 6.5 5.4"></path>
+        </svg>
+      </div>
+
+      <span class="mr-auth-eyebrow">CUSTOMER ACCOUNT</span>
+
+      <h1>Welcome Back</h1>
+
+      <p class="mr-auth-intro">
+        Sign in to view your orders, manage your addresses and continue shopping with Mogachi Ruch.
+      </p>
+
+      {% form 'customer_login', novalidate: 'novalidate' %}
+
+        {% if form.errors %}
+          <div class="mr-auth-message mr-auth-message--error" role="alert">
+            <strong>We couldn't sign you in.</strong>
+            <div>{{ form.errors | default_errors }}</div>
+          </div>
+        {% endif %}
+
+        <div class="mr-field">
+          <label for="CustomerEmail">Email Address</label>
+
+          <input
+            id="CustomerEmail"
+            type="email"
+            name="customer[email]"
+            autocomplete="email"
+            autocapitalize="off"
+            spellcheck="false"
+            placeholder="Enter your email address"
+            value="{{ form.email | escape }}"
+            required
+          >
+        </div>
+
+        <div class="mr-field">
+          <div class="mr-password-heading">
+            <label for="CustomerPassword">Password</label>
+
+            <a href="#recover" data-recover-open>
+              Forgot password?
+            </a>
+          </div>
+
+          <div class="mr-password-input">
+            <input
+              id="CustomerPassword"
+              type="password"
+              name="customer[password]"
+              autocomplete="current-password"
+              placeholder="Enter your password"
+              required
+            >
+
+            <button
+              type="button"
+              class="mr-password-toggle"
+              data-password-toggle
+              aria-label="Show password"
+              aria-pressed="false"
+            >
+              <svg class="mr-eye mr-eye--open" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"></path>
+                <circle cx="12" cy="12" r="2.5"></circle>
+              </svg>
+
+              <svg class="mr-eye mr-eye--closed" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 3l18 18"></path>
+                <path d="M10.6 6.2A10.8 10.8 0 0 1 12 6c6 0 9.5 6 9.5 6a18.7 18.7 0 0 1-3.2 3.8"></path>
+                <path d="M6.2 6.7C3.8 8.4 2.5 12 2.5 12s3.5 6 9.5 6c1.5 0 2.8-.3 4-.8"></path>
+                <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="mr-auth-primary">
+          <span>Sign In</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h13"></path>
+            <path d="M13 6l6 6-6 6"></path>
+          </svg>
+        </button>
+
+      {% endform %}
+
+      <div class="mr-auth-divider">
+        <span>NEW TO MOGACHI RUCH?</span>
+      </div>
+
+      <a
+        href="{{ routes.account_register_url }}"
+        class="mr-create-account"
+      >
+        <span>Create Your Account</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 12h13"></path>
+          <path d="M13 6l6 6-6 6"></path>
+        </svg>
+      </a>
+
+    </div>
+
+    <div class="mr-auth-benefits">
+
+      <div class="mr-benefit">
+        <span class="mr-benefit-number">01</span>
+
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 6.5h16v12H4z"></path>
+          <path d="M8 6.5V4h8v2.5"></path>
+          <path d="M8 12h8"></path>
+          <path d="M8 15h5"></path>
+        </svg>
+
+        <p>Track your orders</p>
+      </div>
+
+      <div class="mr-benefit">
+        <span class="mr-benefit-number">02</span>
+
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21s-7-4.4-7-10V5.5L12 3l7 2.5V11c0 5.6-7 10-7 10z"></path>
+          <path d="M8.5 12l2.2 2.2 4.8-5"></path>
+        </svg>
+
+        <p>Save your addresses</p>
+      </div>
+
+      <div class="mr-benefit">
+        <span class="mr-benefit-number">03</span>
+
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 5h16v14H4z"></path>
+          <path d="M4 8h16"></path>
+          <path d="M8 12h3"></path>
+          <path d="M8 15h6"></path>
+        </svg>
+
+        <p>Checkout faster</p>
+      </div>
+
+    </div>
+
+    <div class="mr-auth-footer">
+      <a href="{{ routes.root_url }}">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M19 12H5"></path>
+          <path d="M11 18l-6-6 6-6"></path>
+        </svg>
+        <span>Back to Mogachi Ruch</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<div
+  id="recover"
+  class="mr-recover-overlay"
+  data-recover
+  aria-hidden="true"
+>
+  <div
+    class="mr-recover-card"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="RecoverTitle"
+  >
+
+    <button
+      type="button"
+      class="mr-recover-close"
+      data-recover-close
+      aria-label="Close password recovery"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 6l12 12"></path>
+        <path d="M18 6L6 18"></path>
+      </svg>
+    </button>
+
+    <div class="mr-recover-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
+        <path d="M4 7h16v12H4z"></path>
+        <path d="M4 8l8 6 8-6"></path>
+      </svg>
+    </div>
+
+    <span class="mr-auth-eyebrow mr-auth-eyebrow--left">
+      ACCOUNT RECOVERY
+    </span>
+
+    <h2 id="RecoverTitle">Reset Password</h2>
+
+    <p>
+      Enter the email address connected to your account and we'll send you instructions to reset your password.
+    </p>
+
+    {% form 'recover_customer_password' %}
+
+      {% if form.posted_successfully? %}
+        <div class="mr-auth-message mr-auth-message--success" role="status">
+          Password reset instructions have been sent to your email.
+        </div>
+      {% endif %}
+
+      {% if form.errors %}
+        <div class="mr-auth-message mr-auth-message--error" role="alert">
+          {{ form.errors | default_errors }}
+        </div>
+      {% endif %}
+
+      <div class="mr-field">
+        <label for="RecoverEmail">Email Address</label>
+
+        <input
+          id="RecoverEmail"
+          type="email"
+          name="email"
+          autocomplete="email"
+          autocapitalize="off"
+          spellcheck="false"
+          placeholder="Enter your email address"
+          required
+        >
+      </div>
+
+      <button type="submit" class="mr-auth-primary">
+        <span>Send Instructions</span>
+
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 12h13"></path>
+          <path d="M13 6l6 6-6 6"></path>
+        </svg>
+      </button>
+
+    {% endform %}
+
+    <button
+      type="button"
+      class="mr-recover-back"
+      data-recover-close
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M19 12H5"></path>
+        <path d="M11 18l-6-6 6-6"></path>
+      </svg>
+
+      <span>Back to Sign In</span>
+    </button>
+
+  </div>
+</div>
+
+<style>
+.mr-auth-page {
+  min-height: calc(100vh - 76px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 20px 85px;
+  box-sizing: border-box;
+  background: #f8f4ec;
+  color: #17351f;
+}
+
+.mr-auth-shell {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.mr-auth-brand {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto 28px;
+  color: #17351f !important;
+  text-decoration: none !important;
+  line-height: .85;
+}
+
+.mr-auth-brand span {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: .16em;
+}
+
+.mr-auth-brand small {
+  margin-top: 7px;
+  color: #b47a2a;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .38em;
+}
+
+.mr-auth-card {
+  padding: 42px;
+  background: #fff;
+  border: 1px solid #e3ddd1;
+  box-shadow: 0 22px 60px rgba(23,53,31,.08);
+}
+
+.mr-auth-icon {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  background: #edf1e9;
+  color: #17351f;
+}
+
+.mr-auth-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mr-auth-eyebrow {
+  display: block;
+  margin-bottom: 9px;
+  color: #8a5c4c;
+  text-align: center;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .2em;
+}
+
+.mr-auth-eyebrow--left {
+  text-align: left;
+}
+
+.mr-auth-card h1 {
+  margin: 0;
+  color: #17351f;
+  text-align: center;
+  font-size: 35px;
+  line-height: 1.1;
+  letter-spacing: -.025em;
+}
+
+.mr-auth-intro {
+  max-width: 390px;
+  margin: 13px auto 30px;
+  color: #707970;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.mr-field {
+  margin-bottom: 19px;
+}
+
+.mr-field label {
+  display: block;
+  margin-bottom: 8px;
+  color: #17351f;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .05em;
+}
+
+.mr-password-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 8px;
+}
+
+.mr-password-heading label {
+  margin: 0;
+}
+
+.mr-password-heading a {
+  color: #8a5c4c;
+  font-size: 10px;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.mr-password-heading a:hover {
+  color: #2f7d32;
+}
+
+.mr-field input {
+  width: 100%;
+  min-height: 51px;
+  box-sizing: border-box;
+  padding: 0 14px;
+  background: #fffdf9;
+  border: 1px solid #dcd5c9;
+  border-radius: 0;
+  color: #17351f;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.mr-field input::placeholder {
+  color: #9b9f99;
+}
+
+.mr-field input:hover {
+  border-color: #bdb6a9;
+}
+
+.mr-field input:focus {
+  border-color: #2f7d32;
+  box-shadow: 0 0 0 3px rgba(47,125,50,.08);
+}
+
+.mr-password-input {
+  position: relative;
+}
+
+.mr-password-input input {
+  padding-right: 52px;
+}
+
+.mr-password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 0;
+  color: #6e776f;
+  cursor: pointer;
+}
+
+.mr-password-toggle svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mr-eye--closed {
+  display: none;
+}
+
+.mr-password-toggle.is-visible .mr-eye--open {
+  display: none;
+}
+
+.mr-password-toggle.is-visible .mr-eye--closed {
+  display: block;
+}
+
+.mr-password-toggle:hover {
+  color: #17351f;
+}
+
+.mr-auth-primary {
+  width: 100%;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 8px;
+  padding: 0 20px;
+  background: #17351f;
+  border: 0;
+  border-radius: 0;
+  color: #fff;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.mr-auth-primary:hover {
+  background: #2f7d32;
+  transform: translateY(-1px);
+}
+
+.mr-auth-primary:focus-visible {
+  outline: 2px solid #b47a2a;
+  outline-offset: 3px;
+}
+
+.mr-auth-primary svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mr-auth-message {
+  margin-bottom: 20px;
+  padding: 13px 15px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.mr-auth-message--error {
+  background: #fbefeb;
+  border: 1px solid #e3c5bc;
+  color: #8a3f31;
+}
+
+.mr-auth-message--success {
+  background: #edf5ed;
+  border: 1px solid #c9ddc9;
+  color: #275a2b;
+}
+
+.mr-auth-message strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.mr-auth-message ul {
+  margin: 6px 0 0;
+  padding-left: 17px;
+}
+
+.mr-auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 29px 0 18px;
+}
+
+.mr-auth-divider::before,
+.mr-auth-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: #e8e2d7;
+}
+
+.mr-auth-divider span {
+  color: #9a978f;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: .13em;
+  white-space: nowrap;
+}
+
+.mr-create-account {
+  min-height: 49px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  box-sizing: border-box;
+  border: 1px solid #d8d0c3;
+  color: #17351f !important;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  transition: background .2s ease, border-color .2s ease;
+}
+
+.mr-create-account:hover {
+  background: #f7f3eb;
+  border-color: #17351f;
+}
+
+.mr-create-account svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mr-auth-benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 18px;
+  border-top: 1px solid #ded7ca;
+  border-bottom: 1px solid #ded7ca;
+}
+
+.mr-benefit {
+  position: relative;
+  padding: 16px 10px 15px;
+  text-align: center;
+}
+
+.mr-benefit + .mr-benefit {
+  border-left: 1px solid #ded7ca;
+}
+
+.mr-benefit-number {
+  display: block;
+  margin-bottom: 7px;
+  color: #8a5c4c;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: .1em;
+}
+
+.mr-benefit svg {
+  width: 19px;
+  height: 19px;
+  margin-bottom: 7px;
+  fill: none;
+  stroke: #17351f;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mr-benefit p {
+  margin: 0;
+  color: #687269;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.mr-auth-footer {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.mr-auth-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #687269;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.mr-auth-footer a:hover {
+  color: #2f7d32;
+}
+
+.mr-auth-footer svg,
+.mr-recover-back svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mr-recover-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  background: rgba(23,53,31,.62);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .2s ease, visibility .2s ease;
+}
+
+.mr-recover-overlay:target,
+.mr-recover-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mr-recover-card {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 40px;
+  background: #fff;
+  border: 1px solid #e3ddd1;
+  box-shadow: 0 25px 70px rgba(0,0,0,.2);
+  transform: translateY(12px);
+  transition: transform .2s ease;
+}
+
+.mr-recover-overlay:target .mr-recover-card,
+.mr-recover-overlay.is-open .mr-recover-card {
+  transform: translateY(0);
+}
+
+.mr-recover-close {
+  position: absolute;
+  top: 14px;
+  right: 15px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: #17351f;
+  cursor: pointer;
+}
+
+.mr-recover-close svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+}
+
+.mr-recover-close:hover {
+  color: #2f7d32;
+}
+
+.mr-recover-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  background: #edf1e9;
+  color: #17351f;
+}
+
+.mr-recover-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mr-recover-card h2 {
+  margin: 0 0 11px;
+  color: #17351f;
+  font-size: 29px;
+  line-height: 1.15;
+  letter-spacing: -.02em;
+}
+
+.mr-recover-card > p {
+  margin: 0 0 26px;
+  color: #707970;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.mr-recover-back {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 19px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: #8a5c4c;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.mr-recover-back:hover {
+  color: #2f7d32;
+}
+
+body.mr-recover-active {
+  overflow: hidden;
+}
+
+@media screen and (max-width: 600px) {
+  .mr-auth-page {
+    min-height: auto;
+    padding: 45px 15px 60px;
+  }
+
+  .mr-auth-card {
+    padding: 32px 21px;
+  }
+
+  .mr-auth-card h1 {
+    font-size: 30px;
+  }
+
+  .mr-auth-intro {
+    margin-bottom: 25px;
+  }
+
+  .mr-auth-benefits {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .mr-benefit {
+    padding: 14px 6px;
+  }
+
+  .mr-benefit p {
+    font-size: 8px;
+  }
+
+  .mr-recover-overlay {
+    padding: 15px;
+  }
+
+  .mr-recover-card {
+    max-height: calc(100vh - 30px);
+    padding: 32px 21px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .mr-auth-card {
+    padding: 28px 17px;
+  }
+
+  .mr-auth-benefits {
+    display: block;
+  }
+
+  .mr-benefit {
+    display: grid;
+    grid-template-columns: 25px 24px 1fr;
+    align-items: center;
+    gap: 8px;
+    text-align: left;
+  }
+
+  .mr-benefit + .mr-benefit {
+    border-left: 0;
+    border-top: 1px solid #ded7ca;
+  }
+
+  .mr-benefit-number,
+  .mr-benefit svg {
+    margin: 0;
+  }
+}
+</style>
+
+<script>
+(function() {
+  var page = document.querySelector('.mr-auth-page');
+  var password = document.getElementById('CustomerPassword');
+  var toggle = document.querySelector('[data-password-toggle]');
+  var recover = document.querySelector('[data-recover]');
+  var recoverOpen = document.querySelector('[data-recover-open]');
+  var recoverCloseButtons = document.querySelectorAll('[data-recover-close]');
+
+  function openRecovery() {
+    if (!recover) return;
+
+    recover.classList.add('is-open');
+    recover.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('mr-recover-active');
+
+    var email = document.getElementById('RecoverEmail');
+
+    if (email) {
+      window.setTimeout(function() {
+        email.focus();
+      }, 100);
+    }
+  }
+
+  function closeRecovery() {
+    if (!recover) return;
+
+    recover.classList.remove('is-open');
+    recover.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('mr-recover-active');
+
+    if (window.location.hash === '#recover') {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  }
+
+  if (password && toggle) {
+    toggle.addEventListener('click', function() {
+      var isHidden = password.type === 'password';
+
+      password.type = isHidden ? 'text' : 'password';
+
+      toggle.classList.toggle('is-visible', isHidden);
+      toggle.setAttribute('aria-pressed', isHidden ? 'true' : 'false');
+      toggle.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+    });
+  }
+
+  if (recoverOpen) {
+    recoverOpen.addEventListener('click', function(event) {
+      event.preventDefault();
+      openRecovery();
+    });
+  }
+
+  recoverCloseButtons.forEach(function(button) {
+    button.addEventListener('click', function(event) {
+      event.preventDefault();
+      closeRecovery();
+    });
+  });
+
+  if (recover) {
+    recover.addEventListener('click', function(event) {
+      if (event.target === recover) {
+        closeRecovery();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && recover && recover.classList.contains('is-open')) {
+      closeRecovery();
+    }
+  });
+
+  if (window.location.hash === '#recover') {
+    openRecovery();
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Customer login",
+  "settings": []
+}
+{% endschema %}

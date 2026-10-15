@@ -1,0 +1,42 @@
+<section class="premium-hero">
+  <div class="premium-hero__media">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 2600 | image_tag: loading:'eager', alt:section.settings.heading }}
+    {% else %}
+      <div class="premium-hero__fallback"></div>
+    {% endif %}
+  </div>
+  <div class="premium-hero__veil"></div>
+  <div class="container premium-hero__inner">
+    <div class="premium-hero__copy">
+      {% if section.settings.eyebrow != blank %}<div class="hero-pill">{{ section.settings.eyebrow }}</div>{% endif %}
+      <h1>{{ section.settings.heading }}</h1>
+      <p>{{ section.settings.text }}</p>
+      <div class="premium-hero__actions">
+        {% if section.settings.primary_label != blank %}<a class="btn btn--large" href="{{ section.settings.primary_link }}">{{ section.settings.primary_label }} <span>→</span></a>{% endif %}
+        {% if section.settings.secondary_label != blank %}<a class="hero-text-link" href="{{ section.settings.secondary_link }}">{{ section.settings.secondary_label }} <span>↗</span></a>{% endif %}
+      </div>
+    </div>
+    <div class="hero-floating-card">
+      <span>{{ section.settings.card_kicker }}</span>
+      <strong>{{ section.settings.card_title }}</strong>
+      <small>{{ section.settings.card_text }}</small>
+    </div>
+  </div>
+  <div class="premium-hero__scroll">SCROLL TO EXPLORE <span>↓</span></div>
+</section>
+{% schema %}
+{"name":"Premium hero","settings":[
+{"type":"image_picker","id":"image","label":"Hero image"},
+{"type":"text","id":"eyebrow","label":"Eyebrow","default":"MOGACHI RUCH • TRADITIONAL GOA"},
+{"type":"text","id":"heading","label":"Heading","default":"The Taste of Traditional Goa"},
+{"type":"textarea","id":"text","label":"Text","default":"A curated collection of Goan flavours, recipes and favourites made for your table."},
+{"type":"text","id":"primary_label","label":"Primary button","default":"Shop Goan Favourites"},
+{"type":"url","id":"primary_link","label":"Primary link"},
+{"type":"text","id":"secondary_label","label":"Secondary link","default":"Discover our story"},
+{"type":"url","id":"secondary_link","label":"Secondary link"},
+{"type":"text","id":"card_kicker","label":"Floating card kicker","default":"OUR SIGNATURE"},
+{"type":"text","id":"card_title","label":"Floating card title","default":"Goan flavours, beautifully packed"},
+{"type":"text","id":"card_text","label":"Floating card text","default":"Use this card to highlight a real product, collection or brand promise."}
+],"presets":[{"name":"Premium hero"}]}
+{% endschema %}

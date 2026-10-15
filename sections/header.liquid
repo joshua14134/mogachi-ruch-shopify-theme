@@ -1,0 +1,656 @@
+<header class="mr-header" data-mr-header>
+  <div class="page-width mr-header__inner">
+
+    <button
+      class="mr-menu-toggle"
+      type="button"
+      data-mobile-toggle
+      aria-expanded="false"
+      aria-controls="mr-main-nav"
+      aria-label="Open menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <a
+      class="mr-logo"
+      href="{{ routes.root_url }}"
+      aria-label="{{ shop.name | escape }} Home"
+    >
+      {% if section.settings.logo != blank %}
+        {{
+          section.settings.logo
+          | image_url: width: 600
+          | image_tag:
+            alt: shop.name,
+            class: 'mr-logo__image',
+            loading: 'eager'
+          }}
+      {% else %}
+        <span class="mr-logo__fallback">
+          <strong>MOGACHI</strong>
+          <small>RUCH</small>
+        </span>
+      {% endif %}
+    </a>
+
+    <nav
+      class="mr-main-nav"
+      id="mr-main-nav"
+      data-mobile-nav
+      aria-label="Main navigation"
+    >
+
+      <a
+        class="mr-nav-link"
+        href="{{ routes.root_url }}"
+      >
+        Home
+      </a>
+
+      <a
+        class="mr-nav-link"
+        href="{{ routes.all_products_collection_url }}"
+      >
+        Shop
+      </a>
+
+      <a
+        class="mr-nav-link"
+        href="/collections/goan-masalas"
+      >
+        Masalas
+      </a>
+
+      <a
+        class="mr-nav-link"
+        href="/collections/goan-pickles"
+      >
+        Pickles
+      </a>
+
+      <a
+        class="mr-nav-link"
+        href="/collections/goan-sweets"
+      >
+        Sweets
+      </a>
+
+      <a
+        class="mr-nav-link"
+        href="/collections/gift-boxes"
+      >
+        Gifts
+      </a>
+
+      <a
+        class="mr-nav-link"
+        href="/pages/About-Us"
+      >
+        About
+      </a>
+
+    </nav>
+
+    <div class="mr-actions">
+
+      <a
+        class="mr-action mr-search-link"
+        href="{{ routes.search_url }}"
+        aria-label="Search"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <circle
+            cx="10.8"
+            cy="10.8"
+            r="6.8"
+          ></circle>
+
+          <path
+            d="M16 16l5 5"
+          ></path>
+        </svg>
+      </a>
+
+      {% if shop.customer_accounts_enabled %}
+
+        <a
+          class="mr-action mr-profile-link"
+          href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
+          aria-label="{% if customer %}My Account{% else %}Sign In{% endif %}"
+        >
+
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <circle
+              cx="12"
+              cy="8"
+              r="3.5"
+            ></circle>
+
+            <path
+              d="M5.5 20c.8-3.6 3-5.4 6.5-5.4s5.7 1.8 6.5 5.4"
+            ></path>
+          </svg>
+
+        </a>
+
+      {% endif %}
+
+      <a
+        class="mr-action mr-cart-link"
+        href="{{ routes.cart_url }}"
+        aria-label="Cart"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            d="M4 5h2l1.6 10.2a2 2 0 0 0 2 1.8h7.7a2 2 0 0 0 1.9-1.4L21 9H7"
+          ></path>
+
+          <circle
+            cx="10"
+            cy="20"
+            r="1"
+          ></circle>
+
+          <circle
+            cx="18"
+            cy="20"
+            r="1"
+          ></circle>
+        </svg>
+
+        {% if cart.item_count > 0 %}
+          <span class="mr-cart__count">
+            {{ cart.item_count }}
+          </span>
+        {% endif %}
+
+      </a>
+
+    </div>
+
+  </div>
+</header>
+
+<style>
+
+.mr-header {
+  width: 100%;
+  position: relative;
+  z-index: 99999;
+  background: #ffffff;
+  border: 0 !important;
+  border-bottom: 1px solid #eeeae3 !important;
+  box-shadow: none !important;
+}
+
+.mr-header__inner {
+  width: 100%;
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.mr-logo {
+  flex: 0 0 auto;
+  min-width: 145px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: #17351f !important;
+  text-decoration: none !important;
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.mr-logo::before,
+.mr-logo::after {
+  content: none !important;
+  display: none !important;
+}
+
+.mr-logo__image {
+  display: block;
+  width: auto;
+  max-width: 145px;
+  max-height: 56px;
+  object-fit: contain;
+}
+
+.mr-logo__fallback {
+  display: flex;
+  flex-direction: column;
+  color: #17351f;
+  line-height: .9;
+}
+
+.mr-logo__fallback strong {
+  font-size: 21px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.mr-logo__fallback small {
+  margin-top: 5px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .36em;
+}
+
+.mr-main-nav {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 1.8vw, 25px);
+  margin: 0;
+  padding: 0;
+}
+
+.mr-main-nav > a,
+.mr-nav-link {
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  color: #17351f !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  text-decoration: none !important;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: .09em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.mr-main-nav > a::before,
+.mr-main-nav > a::after,
+.mr-nav-link::before,
+.mr-nav-link::after {
+  content: none !important;
+  display: none !important;
+}
+
+.mr-main-nav > a:hover,
+.mr-main-nav > a:focus,
+.mr-nav-link:hover,
+.mr-nav-link:focus {
+  color: #2f7d32 !important;
+  border: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+.mr-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.mr-action {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  margin: 0;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: #17351f !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  z-index: 100000;
+  pointer-events: auto !important;
+}
+
+.mr-action::before,
+.mr-action::after {
+  content: none !important;
+  display: none !important;
+}
+
+.mr-action svg {
+  width: 21px;
+  height: 21px;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.mr-action:hover,
+.mr-action:focus {
+  color: #2f7d32 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  text-decoration: none !important;
+}
+
+.mr-profile-link {
+  position: relative;
+  z-index: 100001;
+  pointer-events: auto !important;
+}
+
+.mr-profile-link svg {
+  pointer-events: none;
+}
+
+.mr-cart-link {
+  position: relative;
+  z-index: 100001;
+}
+
+.mr-cart__count {
+  position: absolute;
+  top: 1px;
+  right: 0;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #17351f;
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.mr-menu-toggle {
+  display: none;
+}
+
+@media screen and (max-width: 1200px) {
+
+  .mr-header__inner {
+    gap: 18px;
+  }
+
+  .mr-main-nav {
+    gap: 14px;
+  }
+
+  .mr-nav-link,
+  .mr-main-nav > a {
+    font-size: 12px;
+    letter-spacing: .06em;
+  }
+
+  .mr-logo {
+    min-width: 125px;
+  }
+
+  .mr-logo__image {
+    max-width: 125px;
+  }
+
+}
+
+@media screen and (max-width: 990px) {
+
+  .mr-header__inner {
+    min-height: 68px;
+    gap: 10px;
+  }
+
+  .mr-menu-toggle {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    flex: 0 0 40px;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    z-index: 100002;
+  }
+
+  .mr-menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #17351f;
+    transition:
+      transform .2s ease,
+      opacity .2s ease;
+  }
+
+  .mr-menu-toggle.is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .mr-menu-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mr-menu-toggle.is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .mr-logo {
+    min-width: 0;
+    margin-right: auto;
+  }
+
+  .mr-logo__image {
+    max-width: 125px;
+    max-height: 48px;
+  }
+
+  .mr-main-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    padding: 8px 20px 22px;
+    background: #ffffff;
+    border-top: 1px solid #eeeae3;
+    box-shadow: 0 18px 35px rgba(23,53,31,.12);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition:
+      opacity .2s ease,
+      transform .2s ease,
+      visibility .2s ease;
+    z-index: 99998;
+  }
+
+  .mr-main-nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .mr-main-nav > a,
+  .mr-nav-link {
+    width: 100%;
+    min-height: 48px;
+    justify-content: flex-start;
+    font-size: 13px;
+    letter-spacing: .09em;
+  }
+
+  .mr-actions {
+    gap: 0;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+
+  .mr-header__inner {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .mr-logo__image {
+    max-width: 115px;
+  }
+
+  .mr-action {
+    width: 38px;
+    height: 38px;
+  }
+
+  .mr-action svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .mr-cart__count {
+    top: 0;
+    right: -1px;
+  }
+
+}
+
+</style>
+
+<script>
+(function() {
+
+  var header = document.querySelector('[data-mr-header]');
+
+  if (!header) {
+    return;
+  }
+
+  var mobileToggle = header.querySelector('[data-mobile-toggle]');
+  var mobileNav = header.querySelector('[data-mobile-nav]');
+
+  function closeMobile() {
+
+    if (!mobileNav || !mobileToggle) {
+      return;
+    }
+
+    mobileNav.classList.remove('is-open');
+    mobileToggle.classList.remove('is-open');
+    mobileToggle.setAttribute('aria-expanded', 'false');
+
+  }
+
+  if (mobileToggle && mobileNav) {
+
+    mobileToggle.addEventListener('click', function(event) {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      var isOpen = mobileNav.classList.contains('is-open');
+
+      if (isOpen) {
+
+        closeMobile();
+
+      } else {
+
+        mobileNav.classList.add('is-open');
+        mobileToggle.classList.add('is-open');
+        mobileToggle.setAttribute('aria-expanded', 'true');
+
+      }
+
+    });
+
+  }
+
+  header.querySelectorAll('.mr-main-nav a').forEach(function(link) {
+
+    link.addEventListener('click', function() {
+      closeMobile();
+    });
+
+  });
+
+  document.addEventListener('click', function(event) {
+
+    if (!header.contains(event.target)) {
+      closeMobile();
+    }
+
+  });
+
+  document.addEventListener('keydown', function(event) {
+
+    if (event.key === 'Escape') {
+      closeMobile();
+    }
+
+  });
+
+  window.addEventListener('resize', function() {
+
+    if (window.innerWidth > 990) {
+      closeMobile();
+    }
+
+  });
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    }
+  ]
+}
+{% endschema %}

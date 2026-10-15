@@ -1,0 +1,43 @@
+<section class="section mr-contact-details"><div class="container"><div class="mr-contact-details__grid"><div><div class="eyebrow">CONTACT</div><h2>{{ section.settings.heading }}</h2><p>{{ section.settings.text }}</p></div><div class="mr-contact-details__cards"><div><strong>Email</strong><p>{{ section.settings.email }}</p></div><div><strong>Support</strong><p>{{ section.settings.support }}</p></div><div><strong>Business enquiries</strong><p>{{ section.settings.business }}</p></div></div></div></div></section>
+{% schema %}
+{
+  "name": "Contact details",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Here to help"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Reach out for product, order, gifting and business enquiries."
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "Use your official store email"
+    },
+    {
+      "type": "text",
+      "id": "support",
+      "label": "Support",
+      "default": "Orders, delivery and product questions"
+    },
+    {
+      "type": "text",
+      "id": "business",
+      "label": "Business",
+      "default": "Wholesale and corporate gifting"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact details"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,53 @@
+<section class="section mr-trust-grid"><div class="container"><div class="eyebrow">WHY MOGACHI RUCH</div><h2>{{ section.settings.heading }}</h2><div class="mr-trust-grid__items">{% for block in section.blocks %}<div class="mr-trust-card" {{ block.shopify_attributes }}><strong>{{ block.settings.title }}</strong><p>{{ block.settings.text }}</p></div>{% endfor %}</div></div></section>
+{% schema %}
+{
+  "name": "Trust grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Made for flavour, gifting and sharing"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust",
+      "name": "Trust point",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Traditional inspiration"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "A collection centred on familiar Goan flavours and food traditions."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust grid",
+      "blocks": [
+        {
+          "type": "trust"
+        },
+        {
+          "type": "trust"
+        },
+        {
+          "type": "trust"
+        },
+        {
+          "type": "trust"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

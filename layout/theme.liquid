@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <title>{% if page_title %}{{ page_title }}{% endif %}{% if current_tags %} – {{ current_tags | join: ', ' }}{% endif %}{% if current_page != 1 %} – Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} – {{ shop.name }}{% endunless %}</title>
+  {{ content_for_header }}
+  <style>
+    :root{
+      --bg: {{ settings.background_color | default: '#F8F2E8' }};
+      --text: {{ settings.foreground_color | default: '#2B2118' }};
+      --accent: {{ settings.accent_color | default: '#A8432F' }};
+      --accent2: {{ settings.accent_2_color | default: '#536B45' }};
+      --border: {{ settings.border_color | default: '#DED2C1' }};
+      --card: {{ settings.card_color | default: '#FFFDF8' }};
+    }
+  </style>
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+</head>
+<body>
+  {% sections 'header-group' %}
+  <main id="MainContent" role="main">{{ content_for_layout }}</main>
+  {% sections 'footer-group' %}
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
+</body>
+</html>

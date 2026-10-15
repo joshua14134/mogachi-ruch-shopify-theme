@@ -1,0 +1,15 @@
+<section class="trust">
+  <div class="container grid grid--4">
+    {% for block in section.blocks %}
+      <div class="trust__item" {{ block.shopify_attributes }}>
+        <strong>{{ block.settings.title }}</strong>
+        <span>{{ block.settings.text }}</span>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% schema %}
+{"name":"Trust strip","max_blocks":4,"blocks":[
+{"type":"item","name":"Trust item","settings":[{"type":"text","id":"title","label":"Title","default":"Traditional Recipes"},{"type":"text","id":"text","label":"Text","default":"Inspired by Goan food traditions"}]}
+],"presets":[{"name":"Trust strip","blocks":[{"type":"item","settings":{"title":"AUTHENTIC RECIPES","text":"Traditional Goan flavours"}},{"type":"item","settings":{"title":"QUALITY INGREDIENTS","text":"Carefully selected ingredients"}},{"type":"item","settings":{"title":"TRADITIONAL FLAVOURS","text":"Inspired by Goan food"}},{"type":"item","settings":{"title":"CAREFULLY PACKED","text":"Prepared and packed with care"}}]}]}
+{% endschema %}

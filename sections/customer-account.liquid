@@ -1,0 +1,1036 @@
+<section class="mr-account-page">
+  <div class="mr-account-shell">
+
+    <div class="mr-account-top">
+      <div class="mr-account-heading">
+        <span class="mr-account-kicker">MOGACHI RUCH</span>
+        <h1>
+          Welcome{% if customer.first_name != blank %}, {{ customer.first_name | escape }}{% endif %}
+        </h1>
+        <p>Manage your orders, profile and delivery addresses.</p>
+      </div>
+
+      <a class="mr-account-shop" href="{{ routes.all_products_collection_url }}">
+        <span>Continue Shopping</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 12h13"></path>
+          <path d="m13 6 6 6-6 6"></path>
+        </svg>
+      </a>
+    </div>
+
+    <div class="mr-account-layout">
+
+      <aside class="mr-account-sidebar">
+
+        <div class="mr-profile-box">
+          <div class="mr-avatar">
+            {% if customer.first_name != blank %}
+              {{ customer.first_name | slice: 0 | upcase }}
+            {% else %}
+              {{ customer.email | slice: 0 | upcase }}
+            {% endif %}
+          </div>
+
+          <div class="mr-profile-details">
+            <strong>
+              {% if customer.name != blank %}
+                {{ customer.name | escape }}
+              {% else %}
+                Customer
+              {% endif %}
+            </strong>
+            <span>{{ customer.email | escape }}</span>
+          </div>
+        </div>
+
+        <nav class="mr-account-nav" aria-label="Customer account navigation">
+
+          <a href="{{ routes.account_url }}" class="mr-account-nav-link mr-active">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 11.5 12 5l8 6.5"></path>
+              <path d="M6.5 10.5V19h11v-8.5"></path>
+              <path d="M9.5 19v-5h5v5"></path>
+            </svg>
+            <span>Overview</span>
+          </a>
+
+          <a href="{{ routes.account_url }}" class="mr-account-nav-link">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 4h12v16H6z"></path>
+              <path d="M9 8h6"></path>
+              <path d="M9 12h6"></path>
+              <path d="M9 16h4"></path>
+            </svg>
+            <span>Orders</span>
+          </a>
+
+          <a href="{{ routes.account_addresses_url }}" class="mr-account-nav-link">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path>
+              <circle cx="12" cy="10" r="2"></circle>
+            </svg>
+            <span>Addresses</span>
+          </a>
+
+          <a href="{{ routes.all_products_collection_url }}" class="mr-account-nav-link">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 8h12l1 12H5L6 8Z"></path>
+              <path d="M9 8a3 3 0 0 1 6 0"></path>
+            </svg>
+            <span>Shop Products</span>
+          </a>
+
+        </nav>
+
+        <div class="mr-account-logout">
+          <a href="{{ routes.account_logout_url }}">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10 5H5v14h5"></path>
+              <path d="M13 8l4 4-4 4"></path>
+              <path d="M8 12h9"></path>
+            </svg>
+            <span>Log Out</span>
+          </a>
+        </div>
+
+      </aside>
+
+      <main class="mr-account-content">
+
+        <div class="mr-account-welcome">
+          <div>
+            <span class="mr-section-label">YOUR ACCOUNT</span>
+            <h2>Account Overview</h2>
+          </div>
+
+          <span class="mr-member-badge">
+            CUSTOMER
+          </span>
+        </div>
+
+        <div class="mr-account-cards">
+
+          <div class="mr-info-card">
+
+            <div class="mr-card-heading">
+              <div class="mr-card-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="8" r="3.5"></circle>
+                  <path d="M5.5 20c.8-3.6 3-5.4 6.5-5.4s5.7 1.8 6.5 5.4"></path>
+                </svg>
+              </div>
+
+              <div>
+                <span>PERSONAL DETAILS</span>
+                <h3>Profile</h3>
+              </div>
+            </div>
+
+            <div class="mr-detail-list">
+
+              <div class="mr-detail-row">
+                <span>Name</span>
+                <strong>
+                  {% if customer.name != blank %}
+                    {{ customer.name | escape }}
+                  {% else %}
+                    Not provided
+                  {% endif %}
+                </strong>
+              </div>
+
+              <div class="mr-detail-row">
+                <span>Email</span>
+                <strong>{{ customer.email | escape }}</strong>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="mr-info-card">
+
+            <div class="mr-card-heading">
+              <div class="mr-card-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path>
+                  <circle cx="12" cy="10" r="2"></circle>
+                </svg>
+              </div>
+
+              <div>
+                <span>DELIVERY</span>
+                <h3>Default Address</h3>
+              </div>
+            </div>
+
+            {% if customer.default_address != blank %}
+
+              <div class="mr-address-box">
+                {{ customer.default_address | format_address }}
+              </div>
+
+            {% else %}
+
+              <div class="mr-no-address">
+                <div class="mr-no-address-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path>
+                    <path d="M12 8v4"></path>
+                    <path d="M12 15h.01"></path>
+                  </svg>
+                </div>
+                <span>No delivery address added yet.</span>
+              </div>
+
+            {% endif %}
+
+            <a class="mr-text-button" href="{{ routes.account_addresses_url }}">
+              <span>Manage Addresses</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h13"></path>
+                <path d="m13 6 6 6-6 6"></path>
+              </svg>
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="mr-orders-section">
+
+          <div class="mr-orders-heading">
+            <div>
+              <span class="mr-section-label">RECENT ACTIVITY</span>
+              <h2>Your Orders</h2>
+            </div>
+
+            {% if customer.orders_count > 0 %}
+              <span class="mr-order-count">
+                {{ customer.orders_count }}
+                {% if customer.orders_count == 1 %}
+                  Order
+                {% else %}
+                  Orders
+                {% endif %}
+              </span>
+            {% endif %}
+          </div>
+
+          {% if customer.orders_count > 0 %}
+
+            <div class="mr-orders-list">
+
+              {% for order in customer.orders limit: 5 %}
+
+                <a class="mr-order-item" href="{{ order.customer_url }}">
+
+                  <div class="mr-order-main">
+                    <div class="mr-order-number">
+                      {{ order.name }}
+                    </div>
+
+                    <div class="mr-order-date">
+                      {{ order.created_at | date: "%d %B %Y" }}
+                    </div>
+                  </div>
+
+                  <div class="mr-order-status">
+                    <span class="mr-status-dot"></span>
+                    <span>{{ order.financial_status_label }}</span>
+                  </div>
+
+                  <div class="mr-order-total">
+                    {{ order.total_price | money }}
+                  </div>
+
+                  <div class="mr-order-arrow">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M5 12h13"></path>
+                      <path d="m13 6 6 6-6 6"></path>
+                    </svg>
+                  </div>
+
+                </a>
+
+              {% endfor %}
+
+            </div>
+
+            {% if customer.orders_count > 5 %}
+              <a class="mr-view-orders" href="{{ routes.account_url }}">
+                <span>View All Orders</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h13"></path>
+                  <path d="m13 6 6 6-6 6"></path>
+                </svg>
+              </a>
+            {% endif %}
+
+          {% else %}
+
+            <div class="mr-empty-orders">
+
+              <div class="mr-empty-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 8h12l1 12H5L6 8Z"></path>
+                  <path d="M9 8a3 3 0 0 1 6 0"></path>
+                </svg>
+              </div>
+
+              <div class="mr-empty-content">
+                <span class="mr-empty-label">NO ORDERS YET</span>
+                <h3>Your order history is empty</h3>
+                <p>Your Mogachi Ruch orders will appear here once you place your first order.</p>
+              </div>
+
+              <a class="mr-primary-button" href="{{ routes.all_products_collection_url }}">
+                <span>Explore the Shop</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h13"></path>
+                  <path d="m13 6 6 6-6 6"></path>
+                </svg>
+              </a>
+
+            </div>
+
+          {% endif %}
+
+        </div>
+
+        <div class="mr-account-bottom">
+
+          <div>
+            <span class="mr-section-label">MOGACHI RUCH</span>
+            <h2>Bring the taste of Goa home.</h2>
+            <p>
+              Discover traditional Goan masalas, pickles, sweets and snacks made for everyday moments and special occasions.
+            </p>
+          </div>
+
+          <a href="{{ routes.all_products_collection_url }}" class="mr-primary-button">
+            <span>Shop All Products</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h13"></path>
+              <path d="m13 6 6 6-6 6"></path>
+            </svg>
+          </a>
+
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+.mr-account-page {
+  width: 100%;
+  background: #f8f4ec;
+  min-height: 80vh;
+  padding: 64px 24px 90px;
+  color: #17351f;
+}
+
+.mr-account-shell {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.mr-account-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  padding-bottom: 38px;
+  border-bottom: 1px solid #ded7ca;
+}
+
+.mr-account-kicker,
+.mr-section-label {
+  display: block;
+  color: #8a5c4c;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .22em;
+  line-height: 1.4;
+}
+
+.mr-account-top h1 {
+  margin: 10px 0 8px;
+  color: #17351f;
+  font-size: clamp(36px, 5vw, 58px);
+  line-height: .98;
+  letter-spacing: -.04em;
+  font-weight: 800;
+}
+
+.mr-account-top p {
+  margin: 0;
+  color: #6c756d;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.mr-account-shop,
+.mr-primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  min-height: 48px;
+  padding: 0 21px;
+  background: #17351f;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.mr-account-shop:hover,
+.mr-primary-button:hover {
+  background: #2f7d32;
+  transform: translateY(-1px);
+}
+
+.mr-account-shop svg,
+.mr-primary-button svg,
+.mr-text-button svg,
+.mr-view-orders svg,
+.mr-order-arrow svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mr-account-layout {
+  display: grid;
+  grid-template-columns: 255px minmax(0, 1fr);
+  gap: 42px;
+  padding-top: 42px;
+}
+
+.mr-account-sidebar {
+  align-self: start;
+  position: sticky;
+  top: 24px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e3ddd1;
+  box-shadow: 0 12px 35px rgba(23,53,31,.045);
+}
+
+.mr-profile-box {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 21px 19px;
+  border-bottom: 1px solid #e8e2d7;
+}
+
+.mr-avatar {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #eadcc8;
+  color: #17351f;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.mr-profile-details {
+  min-width: 0;
+}
+
+.mr-profile-box strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #17351f;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.mr-profile-box span {
+  display: block;
+  max-width: 155px;
+  overflow: hidden;
+  color: #7a817a;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mr-account-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.mr-account-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 46px;
+  padding: 0 12px;
+  color: #536057;
+  text-decoration: none !important;
+  font-size: 11px;
+  font-weight: 800;
+  transition: background .2s ease, color .2s ease;
+}
+
+.mr-account-nav-link svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mr-account-nav-link:hover {
+  color: #17351f;
+  background: #f7f3eb;
+}
+
+.mr-account-nav-link.mr-active {
+  background: #17351f;
+  color: #fff !important;
+}
+
+.mr-account-logout {
+  padding: 16px 19px;
+  border-top: 1px solid #e8e2d7;
+}
+
+.mr-account-logout a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #8a5c4c;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-decoration: none !important;
+  text-transform: uppercase;
+}
+
+.mr-account-logout svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mr-account-logout a:hover {
+  color: #17351f;
+}
+
+.mr-account-content {
+  min-width: 0;
+}
+
+.mr-account-welcome,
+.mr-orders-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.mr-account-welcome {
+  margin-bottom: 20px;
+}
+
+.mr-account-welcome h2,
+.mr-orders-heading h2 {
+  margin: 7px 0 0;
+  color: #17351f;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -.025em;
+}
+
+.mr-member-badge,
+.mr-order-count {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 11px;
+  border: 1px solid #d9cdbd;
+  color: #8a5c4c;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  white-space: nowrap;
+}
+
+.mr-account-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.mr-info-card {
+  padding: 25px;
+  background: #fff;
+  border: 1px solid #e3ddd1;
+  box-shadow: 0 12px 30px rgba(23,53,31,.035);
+}
+
+.mr-card-heading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding-bottom: 19px;
+  border-bottom: 1px solid #e8e2d7;
+}
+
+.mr-card-icon {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #edf1e9;
+  color: #17351f;
+}
+
+.mr-card-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mr-card-heading span {
+  display: block;
+  margin-bottom: 4px;
+  color: #8a5c4c;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: .14em;
+}
+
+.mr-card-heading h3 {
+  margin: 0;
+  color: #17351f;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.mr-detail-list {
+  padding-top: 16px;
+}
+
+.mr-detail-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px 0;
+}
+
+.mr-detail-row span {
+  color: #8a918a;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.mr-detail-row strong {
+  color: #17351f;
+  font-size: 13px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.mr-address-box {
+  min-height: 104px;
+  padding: 17px 0;
+  color: #5e685f;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.mr-no-address {
+  min-height: 104px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #7a817a;
+  font-size: 12px;
+}
+
+.mr-no-address-icon {
+  width: 35px;
+  height: 35px;
+  flex: 0 0 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f0e9;
+}
+
+.mr-no-address-icon svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: #8a5c4c;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mr-text-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #17351f !important;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-decoration: none !important;
+  text-transform: uppercase;
+}
+
+.mr-text-button:hover {
+  color: #2f7d32 !important;
+}
+
+.mr-orders-section {
+  margin-top: 40px;
+}
+
+.mr-orders-heading {
+  margin-bottom: 17px;
+}
+
+.mr-orders-list {
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e3ddd1;
+  box-shadow: 0 12px 30px rgba(23,53,31,.035);
+}
+
+.mr-order-item {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) 150px 100px 30px;
+  align-items: center;
+  gap: 20px;
+  min-height: 76px;
+  padding: 14px 20px;
+  color: #17351f !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid #e8e2d7;
+  transition: background .2s ease;
+}
+
+.mr-order-item:last-child {
+  border-bottom: 0;
+}
+
+.mr-order-item:hover {
+  background: #faf7f1;
+}
+
+.mr-order-number {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.mr-order-date {
+  margin-top: 5px;
+  color: #8a918a;
+  font-size: 10px;
+}
+
+.mr-order-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #5f6b61;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.mr-status-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 50%;
+  background: #2f7d32;
+  box-shadow: 0 0 0 4px rgba(47,125,50,.08);
+}
+
+.mr-order-total {
+  color: #17351f;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: right;
+}
+
+.mr-order-arrow {
+  display: flex;
+  justify-content: flex-end;
+  color: #8a5c4c;
+}
+
+.mr-order-arrow svg {
+  width: 17px;
+  height: 17px;
+}
+
+.mr-view-orders {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  margin-top: 14px;
+  min-height: 46px;
+  background: #fff;
+  border: 1px solid #e3ddd1;
+  color: #17351f !important;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  transition: background .2s ease, color .2s ease;
+}
+
+.mr-view-orders:hover {
+  background: #17351f;
+  color: #fff !important;
+}
+
+.mr-empty-orders {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #e3ddd1;
+  box-shadow: 0 12px 30px rgba(23,53,31,.035);
+}
+
+.mr-empty-icon {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #edf1e9;
+  color: #17351f;
+}
+
+.mr-empty-icon svg {
+  width: 25px;
+  height: 25px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mr-empty-content {
+  min-width: 0;
+}
+
+.mr-empty-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #8a5c4c;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: .15em;
+}
+
+.mr-empty-orders h3 {
+  margin: 0 0 6px;
+  color: #17351f;
+  font-size: 17px;
+}
+
+.mr-empty-orders p {
+  margin: 0;
+  color: #737c74;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.mr-empty-orders .mr-primary-button {
+  margin-left: auto;
+  flex: 0 0 auto;
+}
+
+.mr-account-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 42px;
+  padding: 32px;
+  background: #eadfcf;
+}
+
+.mr-account-bottom h2 {
+  margin: 7px 0 8px;
+  color: #17351f;
+  font-size: 24px;
+  letter-spacing: -.025em;
+}
+
+.mr-account-bottom p {
+  max-width: 580px;
+  margin: 0;
+  color: #687269;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+@media screen and (max-width: 900px) {
+  .mr-account-layout {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .mr-account-sidebar {
+    position: static;
+  }
+
+  .mr-account-nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .mr-account-logout {
+    text-align: center;
+  }
+
+  .mr-account-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .mr-account-page {
+    padding: 45px 15px 60px;
+  }
+
+  .mr-account-top {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-bottom: 30px;
+  }
+
+  .mr-account-top h1 {
+    font-size: 38px;
+  }
+
+  .mr-account-shop {
+    width: 100%;
+  }
+
+  .mr-account-nav {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mr-account-welcome {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .mr-order-item {
+    grid-template-columns: 1fr auto;
+    gap: 8px 15px;
+    padding: 18px;
+  }
+
+  .mr-order-status {
+    justify-self: end;
+  }
+
+  .mr-order-total {
+    text-align: left;
+  }
+
+  .mr-order-arrow {
+    display: none;
+  }
+
+  .mr-empty-orders {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 24px;
+  }
+
+  .mr-empty-orders .mr-primary-button {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .mr-account-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 25px;
+  }
+
+  .mr-account-bottom .mr-primary-button {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .mr-account-nav {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mr-account-nav-link {
+    font-size: 10px;
+  }
+
+  .mr-info-card {
+    padding: 20px;
+  }
+
+  .mr-account-welcome h2,
+  .mr-orders-heading h2 {
+    font-size: 24px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Customer account",
+  "settings": []
+}
+{% endschema %}

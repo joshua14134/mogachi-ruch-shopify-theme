@@ -1,0 +1,62 @@
+<section class="section mogachi-page"><div class="container rte">
+  {% if page.title != blank %}<div class="eyebrow">MOGACHI RUCH</div><h1>{{ page.title }}</h1>{% endif %}
+  {% if page.content != blank %}
+    {{ page.content }}
+  {% else %}
+    {% case template.suffix %}
+      {% when 'about' %}
+        <p class="lead">Mogachi Ruch brings the warmth of Goa's traditional kitchen to modern homes, with familiar flavours made to be shared.</p><h2>Food with a Goan soul</h2><p>Our collection is inspired by the bold masalas, tangy pickles, comforting sweets and everyday snacks found across Goan homes. We keep the experience simple: recognisable flavours, clear product information and careful packing.</p><h2>Made for sharing</h2><p>From weekday meals to festive tables, Mogachi Ruch is built around food that starts conversations and brings people back for another bite.</p>
+      {% when 'accessibility' %}
+        <p class="lead">Mogachi Ruch is committed to making our store easier to use for as many people as possible.</p><h2>Our approach</h2><p>We aim for clear headings, readable text, keyboard-friendly controls, descriptive labels and touch-friendly buttons across the storefront. If you encounter an accessibility barrier, please contact us so we can improve the experience.</p><h2>Need assistance?</h2><p>Use our <a href="/pages/contact">Contact</a> page and tell us which page or feature is difficult to use.</p>
+      {% when 'food-safety' %}
+        <p class="lead">Good food begins with responsible handling, clear information and careful storage.</p><h2>Quality and handling</h2><p>Every product should be handled according to its label instructions. Check the ingredient list, allergen information, batch details and best-before date on the pack before consuming.</p><h2>Storage</h2><p>Keep products sealed and stored as instructed on their individual labels. Once opened, follow the product-specific storage guidance.</p>
+      {% when 'privacy-policy' %}
+        <p class="lead">This page explains the general way Mogachi Ruch may handle information submitted through the store.</p><h2>Information you provide</h2><p>When you place an order, create an account, subscribe or contact us, the store may collect information needed to process your request and provide customer support.</p><h2>Payments and checkout</h2><p>Payments are processed through the payment services available at Shopify checkout. Do not send card numbers or passwords through contact forms.</p><h2>Questions</h2><p>For privacy questions, please use our <a href="/pages/contact">Contact</a> page.</p>
+      {% when 'terms-of-service' %}
+        <p class="lead">By using the Mogachi Ruch store, you agree to use the website lawfully and provide accurate information for orders and enquiries.</p><h2>Products and orders</h2><p>Product availability, prices, pack sizes and delivery options are shown at checkout and may change. An order is subject to acceptance and successful payment processing.</p><h2>Store use</h2><p>Do not misuse the website, attempt unauthorised access or submit fraudulent information.</p>
+      {% when 'refund-policy' %}
+        <p class="lead">If an order arrives damaged, incorrect or otherwise needs attention, contact Mogachi Ruch promptly with your order details.</p><h2>What to send</h2><p>Include your order number, a short description of the issue and clear photographs where relevant. We will review the request and explain the available resolution.</p><h2>Important</h2><p>Food products may have product-specific return restrictions. Always check the applicable product and order terms.</p>
+      {% when 'returns-exchanges' %}
+        <p class="lead">We want your Mogachi Ruch order to arrive safely and correctly.</p><h2>Damaged or incorrect items</h2><p>Contact us as soon as possible after delivery with your order number and photographs of the package and product. We will review the issue and arrange the appropriate next step.</p><h2>Before sending anything back</h2><p>Please contact customer support first. Do not ship products to an address without receiving instructions.</p>
+      {% when 'shipping-policy' %}
+        <p class="lead">Orders are packed with care and handed to the available delivery partner for shipment to the address entered at checkout.</p><h2>Delivery</h2><p>Delivery times depend on destination, order processing and carrier conditions. The final estimate shown during checkout is the most relevant for your order.</p><h2>Need help?</h2><p>Use <a href="/pages/track-order">Track Your Order</a> or <a href="/pages/contact">Contact</a> for assistance.</p>
+      {% when 'shipping-info' %}
+        <p class="lead">We deliver Mogachi Ruch flavours to supported destinations through the shipping options available at checkout.</p><h2>Order processing</h2><p>Your order is prepared after successful checkout. Dispatch and delivery timing can vary by destination and carrier.</p><h2>Track your parcel</h2><p>Use the tracking information sent with your order, or visit <a href="/pages/track-order">Track Your Order</a>.</p>
+      {% when 'food-guide' %}
+        <p class="lead">Explore the flavours behind Goa's food culture and discover easy ways to bring them to your table.</p><h2>Start with the essentials</h2><p>Masalas build depth, pickles add brightness and traditional sweets bring a celebratory finish. Pair them with everyday rice, breads, vegetables or your favourite mains.</p><h2>Cook, share, repeat</h2><p>Our food guide is designed around practical inspiration rather than complicated rules.</p>
+      {% when 'sourcing' %}
+        <p class="lead">Ingredients are at the heart of every flavour we share.</p><h2>What we look for</h2><p>We prioritise ingredients that deliver the aroma, colour and taste expected from traditional Goan cooking, while keeping product information clear for customers.</p><h2>Transparency matters</h2><p>Always use the ingredient and allergen information printed on the individual product pack as the definitive source.</p>
+      {% when 'sustainability' %}
+        <p class="lead">Our goal is simple: make thoughtful choices wherever they genuinely improve the product journey.</p><h2>Better choices</h2><p>We focus on sensible packaging, responsible sourcing conversations and reducing avoidable waste without compromising food safety.</p><h2>Always improving</h2><p>As Mogachi Ruch grows, we will continue looking for practical ways to make our operations more responsible.</p>
+      {% when 'store-locator' %}
+        <p class="lead">Looking for Mogachi Ruch in a physical store?</p><h2>Where to find us</h2><p>Our online store is the easiest way to browse the current collection. For retail availability, send us your city through the <a href="/pages/contact">Contact</a> page and our team can guide you.</p>
+      {% when 'press' %}
+        <p class="lead">For press, editorial, collaboration and media enquiries, please contact the Mogachi Ruch team.</p><h2>Media enquiries</h2><p>Tell us about the publication, story or collaboration, your deadline and the information you need.</p><p><a class="btn" href="/pages/contact">CONTACT MOGACHI RUCH</a></p>
+      {% when 'refer-a-friend' %}
+        <p class="lead">Know someone who loves bold, traditional Goan flavours?</p><h2>Share the taste</h2><p>Send them to Mogachi Ruch and introduce them to our masalas, pickles, sweets and traditional favourites.</p><p><a class="btn" href="/collections/all">SHOP THE COLLECTION</a></p>
+      {% when 'corporate-gifting' %}
+        <p class="lead">Create thoughtful food gifts for teams, clients, celebrations and events.</p><h2>Bulk and gifting enquiries</h2><p>Tell us your quantity, preferred budget, delivery city and event date. We can help you identify a suitable assortment.</p><p><a class="btn" href="/pages/wholesale">START A GIFTING ENQUIRY</a></p>
+      {% when 'wholesale' %}
+        <p class="lead">For retailers, cafés, hospitality teams and bulk buyers, Mogachi Ruch can discuss larger-order requirements.</p><h2>Tell us what you need</h2><p>Share your business type, location, approximate monthly quantity and the products you are interested in.</p>
+      {% when 'careers' %}
+        <p class="lead">We are building a food brand rooted in Goa and are always interested in hearing from people who care about great products and great customer experiences.</p><h2>Work with us</h2><p>For future opportunities, send your profile, area of interest and a short note about what you would like to build with Mogachi Ruch through our <a href="/pages/contact">Contact</a> page.</p>
+      {% when 'size-guide' %}
+        <p class="lead">Pack sizes vary by product, so always use the individual product listing and label as the final source of truth.</p><h2>Choosing a size</h2><p>Smaller packs are useful for trying a flavour or gifting. Larger packs are suited to regular household use. Product variants and prices are shown on each product page.</p>
+      {% when 'track-order' %}
+        <p class="lead">Your order tracking details are normally provided after dispatch.</p><h2>Track your order</h2><p>Check your dispatch email or SMS for the tracking link. If you cannot find it, send your order number through our <a href="/pages/contact">Contact</a> page.</p>
+      {% when 'sitemap' %}
+        <h2>Shop</h2><ul><li><a href="/collections/all">All Products</a></li><li><a href="/pages/best-sellers">Best Sellers</a></li><li><a href="/pages/new-arrivals">New Arrivals</a></li><li><a href="/pages/traditional-favourites">Traditional Favourites</a></li><li><a href="/pages/goan-masalas">Goan Masalas</a></li><li><a href="/pages/goan-pickles">Goan Pickles</a></li><li><a href="/pages/goan-sweets">Goan Sweets</a></li><li><a href="/pages/traditional-snacks">Traditional Snacks</a></li><li><a href="/pages/gift-boxes">Gift Boxes</a></li></ul><h2>Discover</h2><ul><li><a href="/pages/about">About</a></li><li><a href="/pages/our-story">Our Story</a></li><li><a href="/pages/food-guide">Food Guide</a></li><li><a href="/pages/sourcing">Sourcing</a></li><li><a href="/pages/sustainability">Sustainability</a></li></ul><h2>Support</h2><ul><li><a href="/pages/faq">FAQ</a></li><li><a href="/pages/contact">Contact</a></li><li><a href="/pages/shipping-info">Shipping</a></li><li><a href="/pages/returns-exchanges">Returns & Exchanges</a></li><li><a href="/pages/track-order">Track Order</a></li></ul>
+      {% when 'goan-masalas' %}
+        <p class="lead">Bold blends inspired by the spice cupboard of Goa.</p><h2>Goan Masalas</h2><p>Explore versatile spice blends for curries, seafood, vegetables, rice and everyday cooking.</p><p><a class="btn" href="/collections/all">SHOP MASALAS</a></p>
+      {% when 'goan-pickles' %}
+        <p class="lead">Tangy, punchy accompaniments made to wake up a meal.</p><h2>Goan Pickles</h2><p>Pair pickles with rice, breads, snacks or your favourite home-cooked dishes for an instant burst of flavour.</p><p><a class="btn" href="/collections/all">SHOP PICKLES</a></p>
+      {% when 'goan-sweets' %}
+        <p class="lead">Sweet traditions for celebrations, gifting and everyday cravings.</p><h2>Goan Sweets</h2><p>Discover the comforting side of Goan food culture with sweets made for sharing.</p><p><a class="btn" href="/collections/all">SHOP SWEETS</a></p>
+      {% when 'traditional-snacks' %}
+        <p class="lead">Crisp, comforting and made for tea-time, travel and sharing.</p><h2>Traditional Snacks</h2><p>Browse familiar snack-time flavours inspired by Goan food traditions.</p><p><a class="btn" href="/collections/all">SHOP SNACKS</a></p>
+      {% else %}
+        <p class="lead">Welcome to Mogachi Ruch — traditional Goan flavour, made for today's table.</p><h2>Discover Mogachi Ruch</h2><p>Browse our collection, learn about our story and find answers to common order questions.</p><p><a class="btn" href="/collections/all">SHOP NOW</a> <a class="btn btn--outline" href="/pages/our-story">OUR STORY</a></p>
+    {% endcase %}
+  {% endif %}
+</div></section>
+{% schema %}{"name":"Mogachi page content","settings":[]}{% endschema %}

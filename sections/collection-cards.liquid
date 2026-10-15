@@ -1,0 +1,40 @@
+<section class="section section--collection-cards">
+  <div class="container">
+    <div class="section__heading">
+      <div class="eyebrow">{{ section.settings.eyebrow }}</div>
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+    <div class="collection-card-grid">
+      {% for block in section.blocks %}
+        <a class="collection-card" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+          <div class="collection-card__media">
+            {% if block.settings.image != blank %}
+              {{ block.settings.image | image_url: width: 1200 | image_tag: loading:'lazy', alt:block.settings.title }}
+            {% else %}
+              <div class="placeholder">Goan Flavours</div>
+            {% endif %}
+          </div>
+          <div class="collection-card__caption">
+            <span>{{ block.settings.kicker }}</span>
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.text }}</p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Collection cards","max_blocks":6,"blocks":[{"type":"collection","name":"Collection","settings":[
+{"type":"image_picker","id":"image","label":"Image"},
+{"type":"text","id":"kicker","label":"Kicker","default":"EXPLORE"},
+{"type":"text","id":"title","label":"Title","default":"Goan Masalas"},
+{"type":"textarea","id":"text","label":"Text","default":"Traditional spice blends."},
+{"type":"url","id":"link","label":"Link"}]}],
+"presets":[{"name":"Collection cards","blocks":[
+{"type":"collection","settings":{"kicker":"EXPLORE","title":"Goan Masalas","text":"Traditional spice blends for Goan cooking."}},
+{"type":"collection","settings":{"kicker":"EXPLORE","title":"Goan Pickles","text":"Bold, tangy and traditional."}},
+{"type":"collection","settings":{"kicker":"EXPLORE","title":"Goan Sweets","text":"Classic Goan sweets and festive favourites."}},
+{"type":"collection","settings":{"kicker":"EXPLORE","title":"Traditional Snacks","text":"Bites inspired by Goan kitchens."}}
+]}]}
+{% endschema %}
